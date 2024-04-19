@@ -1,11 +1,14 @@
 from django.shortcuts import render
 
-# -1 Import http response object
+# Import http response object
 from django.http import HttpResponse
 
-# Create your views here.
+# Import render_to_string object to serve html templates
+from django.template.loader import render_to_string
 
+# ===== Create your views here.
 
-# -2 Create your function, that returns an http response
+# Create your function, that returns an http response
 def index(request):
-    return HttpResponse("This works!")
+    response=render_to_string("home_page/index.html")
+    return HttpResponse(response)
