@@ -7,3 +7,5 @@ __pycache__/
 node_modules/
 .github/
 cloudinary_python.txt
+.env
+expense_manager_app/expense_manager_app/settings.py
