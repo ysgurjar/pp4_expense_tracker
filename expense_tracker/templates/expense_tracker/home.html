@@ -5,9 +5,20 @@
 
 {% block content%}
 
-<h1>Track your expenses efforlessly with our app</h1>
-<p>Simplify your financial management and stay on top of your spending</p>
-
-
+<div class="row align-items-center" id="hero">
+    <div class="col-md">
+        <div class="container">
+            <h1>Track your expenses efforlessly with our app</h1>
+            <p>Simplify your financial management and stay on top of your spending</p>
+            <div class="d-fex">
+                <button class="btn btn-info ">Get started</button>
+                <button class="btn btn-info mx-2">Learn More</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md " id="hero-image">
+        <img class="img-fluid" src="{% static 'images/hero_mockup.png' %}" alt="mobile mock up image">
+    </div>
+</div>
 
 {% endblock %}
