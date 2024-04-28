@@ -5,6 +5,7 @@
 :root {
     --font-source-sans: "Source Sans 3", sans-serif;
     --font-libre-baskerville: "Libre Baskerville", serif;
+
   }
 
 body {
@@ -53,4 +54,3 @@ p {
 .navbar-nav .nav-link:hover::after {
     width: 50%; /* Width of the underline */
 }
-
