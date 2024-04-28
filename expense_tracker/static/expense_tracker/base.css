@@ -33,7 +33,7 @@ p {
     
 }
 
-.navbar-nav .nav-link {
+.navbar-nav .nav-link{
     position: relative;
     transition: all 0.3s ease-in-out;
 }
@@ -61,11 +61,6 @@ p {
     height: 600px;
 }
 
-#hero-image2 img{
-    width:100%;
-    height:auto;
-    /*display: block; */
-}
 #hero-text {
     padding-left: 24px;
 }
