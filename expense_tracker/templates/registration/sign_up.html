@@ -13,9 +13,11 @@
 
 
 {% block content %}
+<div class="container">
     <form method="POST">
         {% csrf_token %}{{form|crispy}}
         <p> Have an account? <a href="/login">here</a></p>
         <button type="submit" class="btn btn-success">Register</button>
     </form>
+</div>
 {% endblock %}
