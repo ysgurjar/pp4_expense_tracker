@@ -11,27 +11,17 @@ def home(request):
     return render(request,'expense_tracker/home.html')
 
 
-# Copied code
-
-
-
 # Create your views here.
 
 # If user attempts to access page without log in
 # redirect to main/base.html
 @login_required(login_url="/login")
-def user_home(request):
-    posts=Post.objects.all()
-
-    if request.method=="POST":
-        post_id=request.POST.get("post-id")
-        post= Post.objects.filter(id=post_id).first()
-        if post and post.author == request.user:
-            post.delete()
-    
-    return render(request,'expense_tracker/home.html', {
-        "posts":posts,
-    })
+def personal_home(request):
+    user=request.user
+    context = {
+        'username':user.username,
+    }
+    return render(request,'expense_tracker/personal_home.html', context)
 
 
 def sign_up(request):
