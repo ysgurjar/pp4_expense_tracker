@@ -21,3 +21,4 @@ class TransactionForm(forms.ModelForm):
         if user is not None:  # Check if user is provided
             # Filter wallets by the current user's wallets
             self.fields['wallet'].queryset = Wallet.objects.filter(user=user)
+            self.fields['category'].queryset = Category.objects.filter(user=user)

@@ -43,9 +43,15 @@ def sign_up(request):
 
 # Create form for transaction
 class TransactionCreateView(CreateView):
+    # 1- binding view class to model
     model=Transaction
+    # 2 - binding view class to form
     form_class=TransactionForm
+
+    # 3 - html that the view will serve, which will be a form
     template_name="expense_tracker/create_transaction.html"
+
+    # 4 - upon successful completion of form, user is redirect to
     success_url=reverse_lazy('overview')
 
     def get_form_kwargs(self):
