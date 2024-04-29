@@ -12,11 +12,10 @@ class RegisterForm(UserCreationForm):
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
-        fields = ['wallet', 'category', 'amount', 'description']
+        fields = ['wallet', 'category', 'amount', 'date','is_income']
     
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
-        print(user)  # Retrieve the user from kwargs
         super().__init__(*args, **kwargs)  # Initialize the form
 
         if user is not None:  # Check if user is provided

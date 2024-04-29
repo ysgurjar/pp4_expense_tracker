@@ -38,9 +38,9 @@ class Transaction(models.Model):
         Category, on_delete=models.SET_NULL, null=True
     )  # Many-to-one link to Category
     amount = models.DecimalField(max_digits=10, decimal_places=2)  # Transaction amount
-    description = models.TextField(blank=True, null=True)  # Optional description
-    date = models.DateTimeField(auto_now_add=True)  # Transaction date
+    date = models.DateField()  # Transaction date
     is_income = models.BooleanField(default=False)
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.amount} - {self.category.name if self.category else 'Uncategorized'}"
