@@ -6,10 +6,15 @@ class Wallet(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE
     )  # Link to the user's account
-    name = models.CharField(max_length=100)  # Wallet name
+    name = models.CharField(max_length=100, default="default wallet")  # Wallet name
     balance = models.DecimalField(
         max_digits=10, decimal_places=2, default=0.00
     )  # Initial balance
+
+    # Meta class to allow two different users to have same wallet name
+    # but it prevents a given user from having two wallets of same name
+    class Meta:
+        unique_together = [('user', 'name')]
 
     def __str__(self):
         return f"{self.name} ({self.user.username})"  # For readable display
