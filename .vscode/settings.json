@@ -27,5 +27,6 @@
    "editor.defaultFormatter": "HookyQR.beautify",
    "[python]": {
       "editor.defaultFormatter": "charliermarsh.ruff"
-   }
+   },
+   "explorer.fileNesting.enabled": true
 }

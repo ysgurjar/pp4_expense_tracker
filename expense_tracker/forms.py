@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Transaction,Wallet,Category
+from django.utils import formats,timezone
 
 class RegisterForm(UserCreationForm):
 
@@ -14,6 +15,9 @@ class TransactionForm(forms.ModelForm):
         model = Transaction
         #fields = ['wallet', 'category', 'amount', 'date','is_income']
         exclude=['user']
+        widgets = {
+            'date': forms.DateInput(format='%d-%m-%Y', attrs={'type': 'date', 'max': formats.date_format(timezone.now(), 'Y-m-d')})
+        }
     
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)

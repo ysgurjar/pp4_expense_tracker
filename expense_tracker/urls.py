@@ -8,5 +8,7 @@ urlpatterns = [
     path('sign-up/',views.sign_up,name="sign-up"),
     path('login/',LoginView.as_view(),name='login'),
     # Transaction
-    path('transaction/create',views.TransactionCreateView.as_view(),name="create_transaction")
+    path('personal/transaction/create',views.TransactionCreateView.as_view(),name="create_transaction"),
+    path('personal/transactions',views.ListTransaction.as_view(),name="list_transaction"),
+    path('personal/overview',views.overview,name="overview")
 ]

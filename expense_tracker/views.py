@@ -9,8 +9,9 @@ from django.contrib.auth.decorators import login_required
 
 # Import related to creating class based view
 from .forms import TransactionForm
-from .models import Transaction
+from .models import Transaction,Wallet
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView
 from django.urls import reverse_lazy
 # =============================
 
@@ -68,3 +69,19 @@ class TransactionCreateView(CreateView):
         form.instance.user = self.request.user  # Set the user before saving
         super().form_valid(form)
         return redirect('home')
+
+# show a list of transactions
+class ListTransaction(ListView):
+    template_name="expense_tracker/transactions.html"
+    model = Transaction
+    context_object_name="transactions"
+
+
+
+# overview function
+def overview(request):
+
+    wallets=Wallet.objects.filter(user=request.user)
+    return render(request, "expense_tracker/overview.html", {
+        "wallets":wallets
+    })

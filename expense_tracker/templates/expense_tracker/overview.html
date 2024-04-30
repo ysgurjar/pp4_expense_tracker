@@ -1,0 +1,18 @@
+{% extends "expense_tracker/personal_home.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="container">
+        Wallet-1 Balance
+    </div>
+    <div class="container">
+        Wallet -2 Balance
+    </div>
+    <div class="contain">
+        ..and so on
+    </div>
+    {% for wallet in wallets %}
+    {{wallet.name}} {}
+    {% endfor %}
+</div>
+{% endblock %}
