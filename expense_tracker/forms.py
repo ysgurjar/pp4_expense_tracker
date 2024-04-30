@@ -12,7 +12,8 @@ class RegisterForm(UserCreationForm):
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
-        fields = ['wallet', 'category', 'amount', 'date','is_income']
+        #fields = ['wallet', 'category', 'amount', 'date','is_income']
+        exclude=['user']
     
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)

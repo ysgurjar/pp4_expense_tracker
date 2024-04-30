@@ -54,3 +54,19 @@ p {
 .navbar-nav .nav-link:hover::after {
     width: 50%; /* Width of the underline */
 }
+
+.floating-btnz {
+  position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #007bff;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
