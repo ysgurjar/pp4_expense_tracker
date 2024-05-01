@@ -17,4 +17,11 @@
     {{wallet.name}} - {{ wallet.balance }}
     {% endfor %}
 </div>
+
+<div id="chart_div"> </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src={% static 'expense_tracker/overview.js' %} ></script>
 {% endblock %}

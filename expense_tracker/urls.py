@@ -2,6 +2,10 @@ from django.urls import path, include
 from . import views
 from django.contrib.auth.views import LoginView
 
+# To be able to see static files
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('',views.home,name="home"),
     path('personal/',views.personal_home, name="personal_home"),
@@ -13,3 +17,7 @@ urlpatterns = [
     path('personal/overview',views.overview,name="overview"),
     path('personal/wallets',views.wallets,name="wallets"),
 ]
+
+# Serve static files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
