@@ -13,7 +13,17 @@ from .models import Transaction,Wallet
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView
 from django.urls import reverse_lazy
+
+
+# Import related to wallet balance update on transaction creation
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
 # =============================
+
+
+
 
 def home(request):
     return render(request,'expense_tracker/home.html')
@@ -85,3 +95,13 @@ def overview(request):
     return render(request, "expense_tracker/overview.html", {
         "wallets":wallets
     })
+
+
+# Update wallet balance on transaction createion
+@receiver(post_save, sender=Transaction)
+def update_wallet_balance(sender, instance, created, **kwargs):
+    """Update the wallet's balance when a new transaction is created."""
+    if created:
+        wallet = instance.wallet
+        wallet.balance += instance.amount
+        wallet.save()

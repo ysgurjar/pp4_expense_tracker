@@ -12,7 +12,7 @@
         ..and so on
     </div>
     {% for wallet in wallets %}
-    {{wallet.name}} {}
+    {{wallet.name}} - {{ wallet.balance }}
     {% endfor %}
 </div>
 {% endblock %}
