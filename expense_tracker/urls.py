@@ -10,5 +10,6 @@ urlpatterns = [
     # Transaction
     path('personal/transaction/create',views.TransactionCreateView.as_view(),name="create_transaction"),
     path('personal/transactions',views.ListTransaction.as_view(),name="list_transaction"),
-    path('personal/overview',views.overview,name="overview")
+    path('personal/overview',views.overview,name="overview"),
+    path('personal/wallets',views.wallets,name="wallets"),
 ]

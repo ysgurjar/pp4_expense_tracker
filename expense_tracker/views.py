@@ -96,6 +96,13 @@ def overview(request):
         "wallets":wallets
     })
 
+# wallets function
+def wallets(request):
+
+    wallets=Wallet.objects.filter(user=request.user)
+    return render(request, "expense_tracker/wallets.html", {
+        "wallets":wallets
+    })
 
 # Update wallet balance on transaction createion
 @receiver(post_save, sender=Transaction)
