@@ -1,0 +1,79 @@
+{% extends 'expense_tracker/personal_home.html' %}
+
+{% block title %}All Transactions {% endblock %}
+{% load crispy_forms_tags %}
+{% block transactions %}active{% endblock %}
+{% block content %}
+ <ul>
+    {% for transaction in transactions %}
+   <div class="block">
+    <li>{{ transaction.amount }}</li>
+    {% endfor %}
+ </ul>
+
+ <h1>Edit Transaction</h1>
+
+ {% for transaction in transactions %}
+ <form method="POST">
+     {% csrf_token %}
+     {{ transaction }}
+     <button type="submit btn btn-info">Save</button>
+ </form>
+ <a href="{% url 'list_transaction' %}">Back to Transactions</a>
+
+ {% endfor %}
+
+ <form>
+    <div class="form-row align-items-center">
+      <div class="col-auto">
+        <label class="sr-only" for="inlineFormInput">Name</label>
+        <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Jane Doe">
+      </div>
+      <div class="col-auto">
+        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">@</div>
+          </div>
+          <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+        </div>
+      </div>
+      <div class="col-auto">
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+          <label class="form-check-label" for="autoSizingCheck">
+            Remember me
+          </label>
+        </div>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="d-inline-flex p-2">
+  <form class="form-inline">
+    <label class="sr-only" for="inlineFormInputName2">Name</label>
+    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Jane Doe">
+  
+    <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+    <div class="input-group mb-2 mr-sm-2">
+      <div class="input-group-prepend">
+        <div class="input-group-text">@</div>
+      </div>
+      <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+    </div>
+  
+    <div class="form-check mb-2 mr-sm-2">
+      <input class="form-check-input" type="checkbox" id="inlineFormCheck">
+      <label class="form-check-label" for="inlineFormCheck">
+        Remember me
+      </label>
+    </div>
+</div>
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+  </form>
+
+  <div class="d-inline-flex p-2">I'm an inline flexbox container!</div>
+ {% endblock %}

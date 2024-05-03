@@ -3,25 +3,42 @@
 
 {% block overview %}active{% endblock %}
 {% block content %}
-<div class="container">
-    <div class="container">
-        Wallet-1 Balance
-    </div>
-    <div class="container">
-        Wallet -2 Balance
-    </div>
-    <div class="contain">
-        ..and so on
-    </div>
-    {% for wallet in wallets %}
-    {{wallet.name}} - {{ wallet.balance }}
-    {% endfor %}
-</div>
 
+<div class="container">
+    <h1 class="text-center">Wallets Overview</h1>
+</div>
+<table class="table table-striped">
+    <thead>
+      <tr>
+  
+        <th scope="col">Wallet name</th>
+        <th scope="col">Balance</th>
+  
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for wallet in wallets %}
+        <td>{{wallet.name}}</td>
+        <td>{{ wallet.balance }}</td>
+        {% endfor %}
+      </tr>      
+    </tbody>
+  </table>
 <div id="chart_div"> </div>
+
+
+
+<div class="container">
+    <h1 class="text-center">Spending overview </h1>
+    <div id="data-container" data-trial="{{ trial | escapejs }}"></div>
+    <div id="chart_div"> </div>
+</div>
 {% endblock %}
 
 {% block script %}
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script src={% static 'expense_tracker/overview.js' %} ></script>
+<script src={% static 'expense_tracker/overview.js' %}></script>
+
+
 {% endblock %}

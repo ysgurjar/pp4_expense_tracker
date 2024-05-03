@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import TransactionForm
 from .models import Transaction,Wallet
 from django.views.generic.edit import CreateView
-from django.views.generic import ListView
+from django.views.generic import ListView,UpdateView,DeleteView
 from django.urls import reverse_lazy
 
 
@@ -82,7 +82,7 @@ class TransactionCreateView(CreateView):
 
 # show a list of transactions
 class ListTransaction(ListView):
-    template_name="expense_tracker/transactions.html"
+    #template_name="expense_tracker/transactions.html"
     model = Transaction
     context_object_name="transactions"
 
@@ -93,7 +93,8 @@ def overview(request):
 
     wallets=Wallet.objects.filter(user=request.user)
     return render(request, "expense_tracker/overview.html", {
-        "wallets":wallets
+        "wallets":wallets,
+        "trial": 0,
     })
 
 # wallets function
@@ -112,3 +113,19 @@ def update_wallet_balance(sender, instance, created, **kwargs):
         wallet = instance.wallet
         wallet.balance += instance.amount
         wallet.save()
+
+
+# =====
+
+
+class UpdateTransaction(UpdateView):
+    model = Transaction
+    fields = ['name', 'amount','description']  # Fields to be displayed in the update form
+    template_name = 'your_app/your_model_update_form.html'  # Template for update form
+    success_url = reverse_lazy('your_model_list')  # URL to redirect after successful update
+
+class DeleteTransaction(DeleteView):
+    model = Transaction
+    fields = ['name', 'amount','description']  # Fields to be displayed in the update form
+    template_name = 'expense_tracker/your_model_confirm_delete.html'  # Template for delete confirmation
+    success_url = reverse_lazy('your_model_list')  # URL to redirect after successful deletion
