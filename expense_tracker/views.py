@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
 # Import related to creating class based view
-from .forms import TransactionForm,UpdateTransactionForm
+from .forms import TransactionForm,UpdateTransactionForm,DeleteTransactionForm
 from .models import Transaction,Wallet
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView,UpdateView,DeleteView
@@ -78,7 +78,7 @@ class TransactionCreateView(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user  # Set the user before saving
         super().form_valid(form)
-        return redirect('home')
+        return redirect('overview')
 
 # show a list of transactions
 class ListTransaction(ListView):
@@ -132,6 +132,6 @@ class UpdateTransaction(UpdateView):
 
 class DeleteTransaction(DeleteView):
     model = Transaction
-    fields = ['name', 'amount','description']  # Fields to be displayed in the update form
-    template_name = 'expense_tracker/your_model_confirm_delete.html'  # Template for delete confirmation
-    success_url = reverse_lazy('overview')  # URL to redirect after successful deletion
+    #form_class=DeleteTransactionForm
+    template_name = 'expense_tracker/transaction_confirm_delete.html'  # Template for update form
+    success_url = reverse_lazy('overview')  # URL to redirect after successful update
