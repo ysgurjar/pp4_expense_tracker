@@ -2,7 +2,16 @@
 {% block title %}
     <h1>Your Moel List</h1>
 {% endblock %}    
-{% block content %}    
+{% block content %} 
+
+<div class="container-fluid text-center align-items-center py-2">
+    <div>
+        
+    <a href={% url 'create_transaction'  %} class="btn btn-info mb-5">Create Transaction</a>
+</div>
+
+</div>
+
 <ul>
         {% for transaction in transactions %}
             <li>
