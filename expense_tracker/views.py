@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
 # Import related to creating class based view
-from .forms import TransactionForm
+from .forms import TransactionForm,UpdateTransactionForm
 from .models import Transaction,Wallet
 from django.views.generic.edit import CreateView
 from django.views.generic import ListView,UpdateView,DeleteView
@@ -120,12 +120,18 @@ def update_wallet_balance(sender, instance, created, **kwargs):
 
 class UpdateTransaction(UpdateView):
     model = Transaction
-    fields = ['name', 'amount','description']  # Fields to be displayed in the update form
-    template_name = 'your_app/your_model_update_form.html'  # Template for update form
-    success_url = reverse_lazy('your_model_list')  # URL to redirect after successful update
+    form_class=UpdateTransactionForm
+    template_name = 'expense_tracker/update_transaction.html'  # Template for update form
+    success_url = reverse_lazy('overview')  # URL to redirect after successful update
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateTransaction, self).get_form_kwargs()
+        # Add the current user to form kwargs
+        kwargs['user'] = self.request.user
+        return kwargs
 
 class DeleteTransaction(DeleteView):
     model = Transaction
     fields = ['name', 'amount','description']  # Fields to be displayed in the update form
     template_name = 'expense_tracker/your_model_confirm_delete.html'  # Template for delete confirmation
-    success_url = reverse_lazy('your_model_list')  # URL to redirect after successful deletion
+    success_url = reverse_lazy('overview')  # URL to redirect after successful deletion
