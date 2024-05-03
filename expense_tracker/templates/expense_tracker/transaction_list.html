@@ -4,11 +4,11 @@
 {% endblock %}    
 {% block content %}    
 <ul>
-        {% for obj in object_list %}
+        {% for transaction in transactions %}
             <li>
-                {{ obj.name }} - {{ obj.description }}
-                <a href="{% url 'update_transaction' obj.pk %}">Update</a>
-                <a href="{% url 'delete_transaction' obj.pk %}">Delete</a>
+                <p>{{ transaction.wallet }}</p> - <p>{{ transaction.amount }}</p> <p>{{ transaction.category }}
+                <a href="{% url 'update_transaction' transaction.pk %}">Update</a>
+                <a href="{% url 'delete_transaction' transaction.pk %}">Delete</a>
             </li>
         {% endfor %}
     </ul>

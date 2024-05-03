@@ -17,7 +17,7 @@ class Wallet(models.Model):
         unique_together = [('user', 'name')]
 
     def __str__(self):
-        return f"{self.name} ({self.user.username})"  # For readable display
+        return f"{self.name}"  # For readable display
 
 
 class Category(models.Model):
