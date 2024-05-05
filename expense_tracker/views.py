@@ -63,7 +63,7 @@ class TransactionCreateView(CreateView):
     template_name="expense_tracker/create_transaction.html"
 
     # 4 - upon successful completion of form, user is redirect to
-    success_url=reverse_lazy('overview')
+    success_url=reverse_lazy('list_transaction')
 
     def get_form_kwargs(self):
         # Get the default form kwargs
