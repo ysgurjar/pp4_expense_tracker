@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "expense_tracker/personal_home.html" %}
 
 {% load crispy_forms_tags %}
 {% load static %}
@@ -18,16 +18,19 @@
 
 <div class="container text-center">
     <h3>Update Transaction</h3>
-    <div class="container text-start">
+    <div class="container text-start ">
 
         <!-- Form -->
         <form method="post">
             {% csrf_token %}
             {{ form | crispy }}
             <div class="text-center">
-                <button type="submit" class="btn btn-info">Update Transaction</button>
+                <button type="submit" class="btn btn-success">Update Transaction</button>
             </div>
         </form>
+        <div class="container text-center">
+            <a href="{% url 'list_transaction' %}" class="btn btn-info  my-3">Back</a>
+        </div>
     </div>
 </div>
 
