@@ -56,17 +56,3 @@ p {
 }
 
 
-#column-example-4 .column tbody {
-  overflow-y: hidden; /* remove this to see how it works */
-}
-#column-example-4 .column tbody th {
-  background-color: #fff;
-  z-index: 1;
-}
-#column-example-4 .column tbody td {
-  animation: moving-bars 2s linear;
-}
-@keyframes moving-bars {
-  0%  { transform: translateY( 100% ); }
-  30% { transform: translateY( 0 ); }
-}
