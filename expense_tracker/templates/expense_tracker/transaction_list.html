@@ -7,7 +7,7 @@ Transactions
 <div class="container-fluid text-center align-items-center py-2">
     <div>
         <h1>
-        <a href={% url 'create_transaction'  %} class="btn btn-info mb-5 p-2">Create Transaction</a>
+        <a href={% url 'create_transaction'  %} class="btn btn-primary mb-5 p-2">Create Transaction</a>
         </h1>
     </div>
     <hr>
@@ -28,7 +28,13 @@ Transactions
             </div>
             <div class="col-md-4">
                 <h3>
+                    {% if not transaction.is_income %}
+                    <span class="text-danger"> -
+                    {% else %}
+                    <span class="text-success"> 
+                    {% endif %}
                     {{ transaction.amount }}
+                    </span>
                 </h3>
                 <h6>
                     {{ transaction.wallet }}
@@ -36,10 +42,10 @@ Transactions
             </div>
             <div class="col-md-4 d-fex flex-row">
                 <div class="container">
-                    <a href="{% url 'update_transaction' transaction.pk %}" class="btn btn-info">Update</a>
+                    <a href="{% url 'update_transaction' transaction.pk %}" class="btn btn-secondary">Update</a>
                 </div>
                 <div class="container">
-                    <a href="{% url 'delete_transaction' transaction.pk %}" class="btn btn-danger my-3">Delete</a>
+                    <a href="{% url 'delete_transaction' transaction.pk %}" class="btn btn-secondary my-3">Delete</a>
                 </div>
             </div>
         </div>

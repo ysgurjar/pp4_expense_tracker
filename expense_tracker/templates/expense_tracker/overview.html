@@ -2,37 +2,74 @@
 {% load static %}
 
 {% block overview %}active{% endblock %}
+{% block custom-css-files %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
+{% endblock %}
 {% block content %}
 
 <div class="container">
-    <h1 class="text-center">Wallets Overview</h1>
+  <h1 class="text-center">Wallets Overview</h1>
 </div>
 <table class="table table-striped">
-    <thead>
-      <tr>
-  
-        <th scope="col">Wallet name</th>
-        <th scope="col">Balance</th>
-  
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        {% for wallet in wallets %}
-        <td>{{wallet.name}}</td>
-        <td>{{ wallet.balance }}</td>
-        {% endfor %}
-      </tr>      
-    </tbody>
-  </table>
+  <thead>
+    <tr>
+
+      <th scope="col">Wallet name</th>
+      <th scope="col">Balance</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {% for wallet in wallets %}
+      <td>{{wallet.name}}</td>
+      <td>{{ wallet.balance }}</td>
+      {% endfor %}
+    </tr>
+  </tbody>
+</table>
 <div id="chart_div"> </div>
 
 
 
 <div class="container">
-    <h1 class="text-center">Spending overview </h1>
-    <div id="data-container" data-trial="{{ trial | escapejs }}"></div>
-    <div id="chart_div"> </div>
+  <h1 class="text-center">Spending overview </h1>
+  <div id="data-container" data-trial="{{ trial | escapejs }}"></div>
+  <div id="chart_div"> </div>
+</div>
+
+<div class="container text-center" id="column-example-4">
+  <table class="charts-css column show-labels show-data-on-hover">
+    <caption> Spending overview </caption>
+    <thead>
+      <tr>
+        <th scope="col"> Year </th>
+        <th scope="col"> Progress </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"> 2016 </th>
+        <td style="--size: 0.2;"></td>
+      </tr>
+      <tr>
+        <th scope="row"> 2017 </th>
+        <td style="--size: 0.4;"></td>
+      </tr>
+      <tr>
+        <th scope="row"> 2018 </th>
+        <td style="--size: 0.6;"></td>
+      </tr>
+      <tr>
+        <th scope="row"> 2019 </th>
+        <td style="--size: 0.8;"></td>
+      </tr>
+      <tr>
+        <th scope="row"> 2020 </th>
+        <td style="--size: 1;"></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 {% endblock %}
 
