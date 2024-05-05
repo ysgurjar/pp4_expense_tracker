@@ -1,24 +1,49 @@
 {% extends "expense_tracker/personal_home.html" %}
 {% block title %}
-    <h1>Your Moel List</h1>
-{% endblock %}    
-{% block content %} 
+<h1>Your Moel List</h1>
+{% endblock %}
+{% block content %}
 
 <div class="container-fluid text-center align-items-center py-2">
     <div>
-        
-    <a href={% url 'create_transaction'  %} class="btn btn-info mb-5">Create Transaction</a>
-</div>
+
+        <a href={% url 'create_transaction'  %} class="btn btn-info mb-5">Create Transaction</a>
+    </div>
 
 </div>
 
 <ul>
-        {% for transaction in transactions %}
-            <li>
-                <p>{{ transaction.wallet }}</p> - <p>{{ transaction.amount }}</p> <p>{{ transaction.category }} <p>{{ transaction.date }}</p>
-                <a href="{% url 'update_transaction' transaction.pk %}" class="btn btn-info">Update</a>
-                <a href="{% url 'delete_transaction' transaction.pk %}" class="btn btn-danger my-3">Delete</a>
-            </li>
-        {% endfor %}
-    </ul>
+    {% for transaction in transactions %}
+
+    <div class="container my-2">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>
+                    {{ transaction.category }}
+                </h3>
+                <h6>
+                    {{ transaction.date }}
+                </h6>
+            </div>
+            <div class="col-md-4">
+                <h3>
+                    {{ transaction.amount }}
+                </h3>
+                <h6>
+                    {{ transaction.wallet }}
+                </h6>
+            </div>
+            <div class="col-md-4 d-fex flex-row">
+                <div class="container">
+                    <a href="{% url 'update_transaction' transaction.pk %}" class="btn btn-info">Update</a>
+                </div>
+                <div class="container">
+                    <a href="{% url 'delete_transaction' transaction.pk %}" class="btn btn-danger my-3">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+</ul>
 {% endblock %}
