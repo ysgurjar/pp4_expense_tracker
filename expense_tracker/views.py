@@ -6,6 +6,7 @@ from django.shortcuts import render, redirect, reverse
 from .forms import RegisterForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Import related to creating class based view
 from .forms import TransactionForm,UpdateTransactionForm,DeleteTransactionForm
@@ -126,6 +127,12 @@ def update_wallet_balance(sender, instance, created, **kwargs):
             # If the transaction is an expense, decrease the wallet balance
             wallet.balance -= instance.amount
         wallet.save()
+
+# Create default "Your wallet" on account creation
+@receiver(post_save, sender=User)
+def create_default_wallet(sender, instance, created, **kwargs):
+    if created:
+        Wallet.objects.create(user=instance, name="Your Wallet", balance=0.00)
 
 
 # =====
