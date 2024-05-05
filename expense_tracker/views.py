@@ -88,9 +88,10 @@ class ListTransaction(ListView):
 
     def get_queryset(self):
         # Get the default queryset
-        queryset = super().get_queryset()
+        
         # Order the queryset by the 'date' field in descending order
-        queryset = queryset.order_by('-date')
+        user = self.request.user
+        queryset = super().get_queryset().filter(user=user).order_by('-date')
         return queryset
 
 
