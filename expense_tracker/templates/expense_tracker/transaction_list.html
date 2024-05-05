@@ -15,9 +15,9 @@
 <ul>
         {% for transaction in transactions %}
             <li>
-                <p>{{ transaction.wallet }}</p> - <p>{{ transaction.amount }}</p> <p>{{ transaction.category }}
-                <a href="{% url 'update_transaction' transaction.pk %}">Update</a>
-                <a href="{% url 'delete_transaction' transaction.pk %}">Delete</a>
+                <p>{{ transaction.wallet }}</p> - <p>{{ transaction.amount }}</p> <p>{{ transaction.category }} <p>{{ transaction.date }}</p>
+                <a href="{% url 'update_transaction' transaction.pk %}" class="btn btn-info">Update</a>
+                <a href="{% url 'delete_transaction' transaction.pk %}" class="btn btn-danger my-3">Delete</a>
             </li>
         {% endfor %}
     </ul>

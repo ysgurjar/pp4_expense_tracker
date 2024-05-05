@@ -86,6 +86,13 @@ class ListTransaction(ListView):
     model = Transaction
     context_object_name="transactions"
 
+    def get_queryset(self):
+        # Get the default queryset
+        queryset = super().get_queryset()
+        # Order the queryset by the 'date' field in descending order
+        queryset = queryset.order_by('-date')
+        return queryset
+
 
 
 # overview function
