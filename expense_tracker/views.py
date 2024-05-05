@@ -78,7 +78,7 @@ class TransactionCreateView(CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user  # Set the user before saving
         super().form_valid(form)
-        return redirect('overview')
+        return redirect('list_transaction')
 
 # show a list of transactions
 class ListTransaction(ListView):
@@ -118,7 +118,12 @@ def update_wallet_balance(sender, instance, created, **kwargs):
     """Update the wallet's balance when a new transaction is created."""
     if created:
         wallet = instance.wallet
-        wallet.balance += instance.amount
+        if instance.is_income:
+            # If the transaction is an income, increase the wallet balance
+            wallet.balance += instance.amount
+        else:
+            # If the transaction is an expense, decrease the wallet balance
+            wallet.balance -= instance.amount
         wallet.save()
 
 
@@ -129,7 +134,7 @@ class UpdateTransaction(UpdateView):
     model = Transaction
     form_class=UpdateTransactionForm
     template_name = 'expense_tracker/update_transaction.html'  # Template for update form
-    success_url = reverse_lazy('overview')  # URL to redirect after successful update
+    success_url = reverse_lazy('list_transaction')  # URL to redirect after successful update
 
     def get_form_kwargs(self):
         kwargs = super(UpdateTransaction, self).get_form_kwargs()
@@ -141,4 +146,4 @@ class DeleteTransaction(DeleteView):
     model = Transaction
     #form_class=DeleteTransactionForm
     template_name = 'expense_tracker/transaction_confirm_delete.html'  # Template for update form
-    success_url = reverse_lazy('overview')  # URL to redirect after successful update
+    success_url = reverse_lazy('list_transaction')  # URL to redirect after successful update
