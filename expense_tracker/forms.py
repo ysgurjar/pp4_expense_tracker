@@ -30,11 +30,11 @@ class TransactionForm(forms.ModelForm):
 class UpdateTransactionForm(forms.ModelForm):
     class Meta:
         model=Transaction
-        fields = ['user','wallet', 'category', 'amount', 'date','is_income']
+        
         exclude=['user']
-        #widgets = {
-        #    'date': forms.DateInput(format='%d-%m-%Y', attrs={'type': 'date', 'max': formats.date_format(timezone.now(), 'Y-m-d')})
-        #}
+        widgets = {
+            'date': forms.DateInput( attrs={'type': 'date', 'max': formats.date_format(timezone.now(), 'Y-m-d')})
+        }
         
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
