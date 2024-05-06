@@ -1,11 +1,8 @@
-// Create a new element (e.g., a paragraph)
-let newElement = document.createElement("p");
+document.addEventListener("DOMContentLoaded", function() {
+    // Access the JSON data stored by Django in the HTML
+    const rawData = document.getElementById('mydata').textContent;
+    const myData = JSON.parse(rawData);
 
-// Set the content of the new element to the value of your variable
-newElement.textContent = myVariable;
-
-// Find the container where you want to add the new element
-let container = document.getElementById("content-container");
-
-// Append the new element to the container
-container.appendChild(newElement);
+    // Now you can use `myData` in your JavaScript code
+    console.log(myData);
+});

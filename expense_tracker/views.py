@@ -20,7 +20,12 @@ from django.urls import reverse_lazy
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
+# Import related to aggrigate query for overview pag
+import json
+from django.db.models import Sum,Case, When, Value, DecimalField
+from django.http import JsonResponse
+from django.core.serializers import serialize
+from decimal import Decimal
 # =============================
 
 
@@ -100,10 +105,43 @@ class ListTransaction(ListView):
 # overview function
 def overview(request):
 
-    wallets=Wallet.objects.filter(user=request.user)
+    wallets = Wallet.objects.filter(user=request.user)
+
+    # Get expenses by category
+    expense_by_cat = Transaction.objects.filter(wallet__in=wallets).values('category__name') \
+                                        .annotate(total_amount=Sum('amount')) \
+                                        .order_by('-total_amount')
+
+    # Get top 5 expense transactions (not income)
+    top_transactions = Transaction.objects.filter(is_income=False, wallet__in=wallets).order_by('-amount')[:5]
+
+    # Get total income and total expense
+    totals = Transaction.objects.filter(wallet__in=wallets).aggregate(
+        total_income=Sum(Case(
+            When(is_income=True, then='amount'),
+            default=0,
+            output_field=DecimalField()
+        )),
+        total_expense=Sum(Case(
+            When(is_income=False, then='amount'),
+            default=0,
+            output_field=DecimalField()
+        ))
+    )
+
+    # Serialize data
+    # Note: Serialize function is for model instances, not for dictionaries
+    # So for dictionaries, we use json.dumps
+    #serialized_data = json.dumps(totals)
+
+    # Handling Decimal types for JSON serialization
+    serialized_data = json.dumps(totals, default=lambda x: str(x) if isinstance(x, Decimal) else x)
+
     return render(request, "expense_tracker/overview.html", {
-        "wallets":wallets,
-        "trial": 0,
+        "wallets": wallets,
+        "expense_by_cat": list(expense_by_cat),
+        "top_transactions": top_transactions,
+        "mydata": serialized_data,
     })
 
 # wallets function
