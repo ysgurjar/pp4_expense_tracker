@@ -52,7 +52,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 {{ totals|json_script:"totals" }}
-
+{{ top_transactions|json_script:"top_transactions"}}
 <script src={% static 'expense_tracker/overview.js' %} defer></script>
 
 

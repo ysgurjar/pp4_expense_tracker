@@ -134,16 +134,17 @@ def overview(request):
     # Serialize data
     # Note: Serialize function is for model instances, not for dictionaries
     # So for dictionaries, we use json.dumps
-    #serialized_data = json.dumps(totals)
+    top_transactions = serialize('json',top_transactions)
 
     # Handling Decimal types for JSON serialization
-    serialized_data = json.dumps(totals, default=lambda x: str(x) if isinstance(x, Decimal) else x)
+    totals_serialized = json.dumps(totals, default=lambda x: str(x) if isinstance(x, Decimal) else x)
+    #top_transactions_serialized=json.dumps(top_transactions, default=lambda x: str(x) if isinstance(x, Decimal) else x)
 
     return render(request, "expense_tracker/overview.html", {
         "wallets": wallets,
         "expense_by_cat": list(expense_by_cat),
         "top_transactions": top_transactions,
-        "totals": serialized_data,
+        "totals": totals_serialized,
     })
 
 # wallets function
