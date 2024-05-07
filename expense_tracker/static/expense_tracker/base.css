@@ -55,4 +55,7 @@ p {
     width: 50%; /* Width of the underline */
 }
 
-
+#mychart_container {
+  height: 50vh;
+  width: auto;
+}
