@@ -115,7 +115,7 @@ def overview(request):
                                         .order_by('-total_amount')
 
     # Get top 5 expense transactions (not income)
-    top_transactions = Transaction.objects.filter(is_income=False, wallet__in=wallets).order_by('-amount')[:5]
+    top_transactions = Transaction.objects.filter(is_income=False, wallet__in=wallets).order_by('-amount').values('amount', 'category__name', 'date')[:5]
 
     # Get total income and total expense
     totals = Transaction.objects.filter(wallet__in=wallets).aggregate(
@@ -134,11 +134,10 @@ def overview(request):
     # Serialize data
     # Note: Serialize function is for model instances, not for dictionaries
     # So for dictionaries, we use json.dumps
-    top_transactions = serialize('json',top_transactions)
+    #top_transactions = serialize('json',top_transactions)
 
     # Handling Decimal types for JSON serialization
     totals_serialized = json.dumps(totals, default=lambda x: str(x) if isinstance(x, Decimal) else x)
-    #top_transactions_serialized=json.dumps(top_transactions, default=lambda x: str(x) if isinstance(x, Decimal) else x)
 
     return render(request, "expense_tracker/overview.html", {
         "wallets": wallets,

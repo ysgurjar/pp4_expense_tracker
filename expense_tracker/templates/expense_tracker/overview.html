@@ -40,8 +40,29 @@
   <h2 class="text-center">5 Largest Withdrawals</h2>
 </div>
 
-<div class="container d-flex justify-content-center" id="mychart_container">
-  <canvas id="myChart" width="400" height="400"></canvas>
+<div class="container">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in top_transactions %}
+        <tr>
+            <td>{{ transaction.amount }}</td>
+            <td>{{ transaction.category__name }}</td>
+            <td>{{ transaction.date|date:"Y-m-d" }}</td> <!-- Formatting the date -->
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No transactions found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
   </div>
   
 
@@ -52,7 +73,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 {{ totals|json_script:"totals" }}
-{{ top_transactions|json_script:"top_transactions"}}
 <script src={% static 'expense_tracker/overview.js' %} defer></script>
 
 

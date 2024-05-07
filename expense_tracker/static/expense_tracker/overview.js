@@ -35,11 +35,3 @@ const myChart = new Chart(ctx, {
         }
     }
 });
-
-
-// Access the JSON data stored by Django in the HTML
-const rawData2 = document.getElementById('top_transactions').textContent;
-
-// Need to parse twice to be able to get correct value
-const myData2 = JSON.parse(JSON.parse(rawData2));
-console.log(myData2);
