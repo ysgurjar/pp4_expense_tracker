@@ -1,12 +1,13 @@
 
-    // Access the JSON data stored by Django in the HTML
-    const rawData = document.getElementById('mydata').textContent;
+// Access the JSON data stored by Django in the HTML
+const rawData = document.getElementById('totals').textContent;
 
-    // Need to parse twice to be able to get correct value
-    const myData = JSON.parse(JSON.parse(rawData));
-    const total_income = parseInt(myData.total_income);  // Parse the income to integer
-    const total_expense = parseInt(myData.total_expense);  // Parse the expense to integer
+// Need to parse twice to be able to get correct value
+const myData = JSON.parse(JSON.parse(rawData));
+const total_income = parseInt(myData.total_income);  // Parse the income to integer
+const total_expense = parseInt(myData.total_expense);  // Parse the expense to integer
 
+// bar chart for total income and expense
 const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
     type: 'bar',

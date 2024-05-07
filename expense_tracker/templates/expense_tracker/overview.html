@@ -33,15 +33,26 @@
 </table>
 
 <div class="container d-flex justify-content-center" id="mychart_container">
-<canvas id="myChart" width="400" height="400"></canvas>
+<canvas id="myChart"></canvas>
 </div>
+
+<div class="container my-3">
+  <h2 class="text-center">5 Largest Withdrawals</h2>
+</div>
+
+<div class="container d-flex justify-content-center" id="mychart_container">
+  <canvas id="myChart" width="400" height="400"></canvas>
+  </div>
+  
+
 
 {% endblock %}
 
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-{{ mydata|json_script:"mydata" }}
+{{ totals|json_script:"totals" }}
+
 <script src={% static 'expense_tracker/overview.js' %} defer></script>
 
 

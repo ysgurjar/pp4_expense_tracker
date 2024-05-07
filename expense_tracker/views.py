@@ -143,7 +143,7 @@ def overview(request):
         "wallets": wallets,
         "expense_by_cat": list(expense_by_cat),
         "top_transactions": top_transactions,
-        "mydata": serialized_data,
+        "totals": serialized_data,
     })
 
 # wallets function
