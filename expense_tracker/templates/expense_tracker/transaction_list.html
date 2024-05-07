@@ -19,15 +19,15 @@ Transactions
     <div class="container my-2">
         <div class="row">
             <div class="col-md-4">
-                <h3>
+                <h4>
                     {{ transaction.category }}
-                </h3>
+                </h4>
                 <h6>
                     {{ transaction.date }}
                 </h6>
             </div>
             <div class="col-md-4">
-                <h3>
+                <h4>
                     {% if not transaction.is_income %}
                     <span class="text-danger"> -
                     {% else %}
@@ -35,7 +35,7 @@ Transactions
                     {% endif %}
                     {{ transaction.amount }}
                     </span>
-                </h3>
+                </h4>
                 <h6>
                     {{ transaction.wallet }}
                 </h6>
