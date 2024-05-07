@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from .models import Transaction,Wallet,Category
 from django.utils import formats,timezone
 
+
+
 class RegisterForm(UserCreationForm):
 
     class Meta:

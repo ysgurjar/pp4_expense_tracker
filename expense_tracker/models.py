@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+#Impor to validate amount (only non neg entries allowed)
+from django.core.validators import MinValueValidator
+from decimal import Decimal
 
 class Wallet(models.Model):
     user = models.ForeignKey(
@@ -37,7 +40,8 @@ class Transaction(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True
     )  # Many-to-one link to Category
-    amount = models.DecimalField(max_digits=10, decimal_places=2)  # Transaction amount
+    amount = models.DecimalField(max_digits=10, decimal_places=2,
+                                 validators=[MinValueValidator(Decimal('0.00'))])  # Transaction amount
     date = models.DateField()  # Transaction date
     is_income = models.BooleanField(default=False)
     user=models.ForeignKey(User, on_delete=models.CASCADE)
