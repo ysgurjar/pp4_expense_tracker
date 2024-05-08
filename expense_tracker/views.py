@@ -165,7 +165,7 @@ class UpdateWallet(UpdateView):
     success_url = reverse_lazy('list_wallet')  # URL to redirect after successful update
 
     def get_form_kwargs(self):
-        kwargs = super(UpdateTransaction, self).get_form_kwargs()
+        kwargs = super(UpdateWallet, self).get_form_kwargs()
         # Add the current user to form kwargs
         kwargs['user'] = self.request.user
         return kwargs

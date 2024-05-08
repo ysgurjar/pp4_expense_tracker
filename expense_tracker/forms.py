@@ -94,12 +94,15 @@ class UpdateWalletForm(forms.ModelForm):
         exclude=['user']
         
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)
-        super().__init__(*args, **kwargs)  # Initialize the form
+        self.user = kwargs.pop('user', None)
+        super(UpdateWalletForm, self).__init__(*args, **kwargs)
 
-        if user is not None:  # Check if user is provided
-            # Filter wallets by the current user's wallets
-            self.fields['name'].queryset = Wallet.objects.filter(user=user)
+    def clean_name(self):
+            name = self.cleaned_data.get('name')
+            if Wallet.objects.filter(user=self.user, name=name).exclude(id=self.instance.id).exists():
+                raise forms.ValidationError("You already have a wallet with this name.")
+            return name
+    
 
 class DeleteWalletForm(forms.ModelForm):
     class Meta:
