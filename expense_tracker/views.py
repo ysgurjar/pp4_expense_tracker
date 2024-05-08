@@ -37,6 +37,10 @@ from django.contrib import messages
 
 from .forms import WalletForm,UpdateWalletForm,DeleteWalletForm
 
+
+# Import related to protecting class based view
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # =============================
 
 
@@ -47,7 +51,7 @@ def home(request):
 
 # If user attempts to access page without log in
 # redirect to home
-@login_required(login_url="/")
+@login_required
 def personal_home(request):
     user=request.user
     context = {
@@ -71,7 +75,7 @@ def sign_up(request):
 
 
 # Create form for transaction
-class TransactionCreateView(CreateView):
+class TransactionCreateView(LoginRequiredMixin, CreateView):
     # 1- binding view class to model
     model=Transaction
     # 2 - binding view class to form
@@ -99,7 +103,7 @@ class TransactionCreateView(CreateView):
         return redirect('list_transaction')
 
 # show a list of transactions
-class ListTransaction(ListView):
+class ListTransaction(LoginRequiredMixin, ListView):
     #template_name="expense_tracker/transactions.html"
     model = Transaction
     context_object_name="transactions"
@@ -116,7 +120,7 @@ class ListTransaction(ListView):
 # ===== Wallets =====
 
 # Create form for wallets
-class WalletCreateView(CreateView):
+class WalletCreateView(LoginRequiredMixin, CreateView):
     # 1- binding view class to model
     model=Wallet
     # 2 - binding view class to form
@@ -144,7 +148,7 @@ class WalletCreateView(CreateView):
         return redirect('list_wallet')
 
 # show a list of wallets
-class ListWallet(ListView):
+class ListWallet(LoginRequiredMixin, ListView):
     #template_name="expense_tracker/transactions.html"
     model = Wallet
     context_object_name="wallets"
@@ -158,7 +162,7 @@ class ListWallet(ListView):
         return queryset
 
 
-class UpdateWallet(UpdateView):
+class UpdateWallet(LoginRequiredMixin, UpdateView):
     model = Wallet
     form_class=UpdateWalletForm
     template_name = 'expense_tracker/update_wallet.html'  # Template for update form
@@ -170,13 +174,14 @@ class UpdateWallet(UpdateView):
         kwargs['user'] = self.request.user
         return kwargs
 
-class DeleteWallet(DeleteView):
+class DeleteWallet(LoginRequiredMixin, DeleteView):
     model = Wallet
     #form_class=DeleteTransactionForm
     template_name = 'expense_tracker/wallet_confirm_delete.html'  # Template for update form
     success_url = reverse_lazy('list_wallet')  # URL to redirect after successful update
 
 # overview function
+@login_required
 def overview(request):
 
     wallets = Wallet.objects.filter(user=request.user)
@@ -217,15 +222,6 @@ def overview(request):
         "top_transactions": top_transactions,
         "totals": totals_serialized,
     })
-
-# ======== wallets function
-def wallets(request):
-
-    wallets=Wallet.objects.filter(user=request.user)
-    return render(request, "expense_tracker/wallets.html", {
-        "wallets":wallets
-    })
-
 
 # Dictionary to hold the old data temporarily
 old_data = {}
@@ -282,7 +278,7 @@ def create_default_wallet(sender, instance, created, **kwargs):
 # =====
 
 
-class UpdateTransaction(UpdateView):
+class UpdateTransaction(LoginRequiredMixin, UpdateView):
     model = Transaction
     form_class=UpdateTransactionForm
     template_name = 'expense_tracker/update_transaction.html'  # Template for update form
@@ -294,7 +290,7 @@ class UpdateTransaction(UpdateView):
         kwargs['user'] = self.request.user
         return kwargs
 
-class DeleteTransaction(DeleteView):
+class DeleteTransaction(LoginRequiredMixin, DeleteView):
     model = Transaction
     #form_class=DeleteTransactionForm
     template_name = 'expense_tracker/transaction_confirm_delete.html'  # Template for update form
