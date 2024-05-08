@@ -1,0 +1,61 @@
+/* Import libre baskerville and Source sans Google fonts */
+
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+:root {
+    --font-source-sans: "Source Sans 3", sans-serif;
+    --font-libre-baskerville: "Libre Baskerville", serif;
+
+  }
+
+body {
+    font-family: var(--font-source-sans);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-libre-baskerville);
+  
+}
+
+h4,
+h5,
+h6,
+p {
+    font-family: var(--font-source-sans);
+    
+}
+
+.navbar-nav .nav-link{
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px; /* Thickness of the underline */
+    background-color: #000; /* Color of the underline */
+    transition: width 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 50%; /* Width of the underline */
+}
+
+#mychart_container {
+  height: 50vh;
+  width: auto;
+}
