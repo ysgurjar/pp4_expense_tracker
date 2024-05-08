@@ -166,33 +166,40 @@ def capture_old_instance(sender, instance, **kwargs):
         old_data[instance.pk] = {
             'amount': old_instance.amount,
             'is_income': old_instance.is_income,
-            'wallet': old_instance.wallet,
+            'wallet_id': old_instance.wallet_id,  # Store only the wallet_id
         }
 
-# Update wallet balance on transaction createion
 @receiver(post_save, sender=Transaction)
 def update_wallet_balance(sender, instance, created, **kwargs):
+    wallet = Wallet.objects.get(id=instance.wallet_id)  # Fetch the latest wallet state
     if created:
         if instance.is_income:
-            instance.wallet.balance += instance.amount
+            wallet.balance += instance.amount
         else:
-            instance.wallet.balance -= instance.amount
+            wallet.balance -= instance.amount
     else:
         old_instance_data = old_data.pop(instance.pk, None)
         if old_instance_data:
+            # Fetch the wallet associated with the old transaction data if it's different
+            if old_instance_data['wallet_id'] != instance.wallet_id:
+                old_wallet = Wallet.objects.get(id=old_instance_data['wallet_id'])
+            else:
+                old_wallet = wallet
+
             # Undo the old transaction effect
             if old_instance_data['is_income']:
-                old_instance_data['wallet'].balance -= old_instance_data['amount']
+                old_wallet.balance -= old_instance_data['amount']
             else:
-                old_instance_data['wallet'].balance += old_instance_data['amount']
+                old_wallet.balance += old_instance_data['amount']
+            old_wallet.save()
 
             # Apply the new transaction effect
             if instance.is_income:
-                instance.wallet.balance += instance.amount
+                wallet.balance += instance.amount
             else:
-                instance.wallet.balance -= instance.amount
+                wallet.balance -= instance.amount
 
-    instance.wallet.save()
+    wallet.save()
 
 # Create default "Your wallet" on account creation
 @receiver(post_save, sender=User)
