@@ -8,6 +8,7 @@ django = "*"
 django-environ = "*"
 gunicorn = "~=20.1"
 crispy-bootstrap5 = "*"
+whitenoise = "*"
 
 [dev-packages]
 
