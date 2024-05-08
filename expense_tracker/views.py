@@ -29,6 +29,10 @@ from decimal import Decimal
 
 # Imports related to wallet balance update on deletion of transaction
 from django.db.models.signals import pre_delete
+
+# Import related to messages
+from django.contrib import messages
+
 # =============================
 
 
@@ -54,7 +58,8 @@ def sign_up(request):
         if form.is_valid():
             user=form.save()
             login(request,user)
-            return redirect(reverse('home'))
+            messages.success(request, "Account created successfully! Please log in.")
+            return redirect(reverse('login'))
     else:
         form=RegisterForm()
 
