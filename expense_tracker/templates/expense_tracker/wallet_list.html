@@ -45,6 +45,10 @@ Wallets
         </div>
     </div>
     <hr>
+    {% empty %}
+        <tr>
+            <td colspan="3">No Wallets found.</td>
+        </tr>
     {% endfor %}
 </ul>
 {% endblock %}

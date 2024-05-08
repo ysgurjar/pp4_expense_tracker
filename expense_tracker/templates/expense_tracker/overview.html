@@ -13,8 +13,8 @@
 <div class="container my-3">
   <h2 class="text-center">Wallets Overview</h2>
 </div>
-<table class="container table table-striped">
-  <thead>
+<table class="container table table-bordered">
+  <thead class="table-info">
     <tr>
 
       <th scope="col">Wallet name</th>
@@ -23,14 +23,24 @@
     </tr>
   </thead>
   <tbody>
+    {% for wallet in wallets %}
     <tr>
-      {% for wallet in wallets %}
+     
       <td>{{wallet.name}}</td>
       <td>{{ wallet.balance }}</td>
+      {% empty %}
+        <tr>
+            <td colspan="3">No transactions found.</td>
+        </tr>
       {% endfor %}
     </tr>
   </tbody>
 </table>
+
+<div class="container my-4 text-center">
+  <h2 >Total Income and expenses</h2>
+  <h6>Includes all wallets</h6>
+</div>
 
 <div class="container d-flex justify-content-center" id="mychart_container">
 <canvas id="myChart"></canvas>
@@ -41,8 +51,8 @@
 </div>
 
 <div class="container">
-<table class="table">
-    <thead>
+<table class="table table-bordered">
+    <thead class="table-info">
         <tr>
             <th>Amount</th>
             <th>Category</th>

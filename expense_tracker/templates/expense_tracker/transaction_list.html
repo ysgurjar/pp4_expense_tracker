@@ -51,6 +51,10 @@ Transactions
         </div>
     </div>
     <hr>
+    {% empty %}
+    <tr>
+        <td colspan="3">No transactions found.</td>
+    </tr>
     {% endfor %}
 </ul>
 {% endblock %}
