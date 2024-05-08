@@ -5,142 +5,162 @@
 
 {% block css_files %}
 <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,200" />
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,200" />
 {% endblock %}
 
 {% block content%}
-<div class="cotainer-fluid" >
+<div class="cotainer-fluid">
 
-    <div class="row align-items-center">
-        <div class="col-md">
-            <div class="container">
-                <div class="container">
-                    <h1 class="pt-5">Track your expenses efforlessly with our app</h1>
-                    <p>Simplify your financial management and stay on top of your spending</p>
-                    <div class="d-fex">
-                        <button class="btn btn-info mb-5">Get started</button>
-                        <button class="btn btn-info mx-2 mb-5">Learn More</button>
-                    </div>
-                </div>
-            </div>
+  <div class="row align-items-center">
+    <div class="col-md">
+      <div class="container">
+        <div class="container">
+          <h1 class="pt-5">Track your expenses efforlessly with our app</h1>
+          <p>Simplify your financial management and stay on top of your spending</p>
+          <div class="d-fex">
+            <button class="btn btn-info mb-5">Get started</button>
+            <button class="btn btn-info mx-2 mb-5">Learn More</button>
+          </div>
         </div>
-        <div class="col-md ">
-            <img class="img-fluid" src="{% static 'images/hero_mockup2.webp' %}" alt="mobile mock up image" id="hero-img">
-        </div>
-
+      </div>
     </div>
+    <div class="col-md ">
+      <img class="img-fluid" src="{% static 'images/hero_mockup2.webp' %}" alt="mobile mock up image" id="hero-img">
+    </div>
+
+  </div>
 </div>
 <div class="container-fluid text-center my-5">
-    <h4>Trused by Global brands</h4>
+  <h4>Trused by Global brands</h4>
 </div>
 
 <!-- Testimonial section-->
 
 <div class="container-fluid my-3">
-    <div class="row text-center justify-content-center">
-        <div class="col-3">
-            <img class="img-fluid" src="{% static 'images/figma.png' %}" alt="figma symbol">
-        </div>
-        <div class="col-3">
-            <img class="img-fluid" src="{% static 'images/puma.png' %}" alt="puma symbol">
-        </div>
-        <div class="col-3">
-            <img class="img-fluid" src="{% static 'images/nutella.png' %}" alt="nutella symbol">
-        </div>
-        <div class="col-3">
-            <img class="img-fluid" src="{% static 'images/netflix.png' %}" alt="netflix symbol">
-        </div>
+  <div class="row text-center justify-content-center">
+    <div class="col-3">
+      <img class="img-fluid" src="{% static 'images/figma.png' %}" alt="figma symbol">
     </div>
+    <div class="col-3">
+      <img class="img-fluid" src="{% static 'images/puma.png' %}" alt="puma symbol">
+    </div>
+    <div class="col-3">
+      <img class="img-fluid" src="{% static 'images/nutella.png' %}" alt="nutella symbol">
+    </div>
+    <div class="col-3">
+      <img class="img-fluid" src="{% static 'images/netflix.png' %}" alt="netflix symbol">
+    </div>
+  </div>
 </div>
 
-<!-- Feature section -->
-<div class="container-fluid py-5" >
-    <div class="container py-5" >
-        <div class="row">
-            <div class="col-md">
-                <img class="img-fluid" src="{% static 'images/feature_mockup1.webp' %}" alt="feature mock up 1">
-            </div>
-            <div class="col-md d-flex flex-column justify-content-center align-items-center">
-                <h2>Take Control of Your Finances with Real-Time Tracking</h2>
-                <p>Our expense tracker app provides real-time tracking of your expenses, helping you manage your finances more efficiently. With our intuitive interface and powerful features, you can easily keep track of your spending and make informed financial decisions.</p>
-            </div>
-
+<section id="features">
+  <!-- Feature section -->
+  <div class="container-fluid py-5">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-md">
+          <img class="img-fluid" src="{% static 'images/feature_mockup1.webp' %}" alt="feature mock up 1">
         </div>
-    </div>
-</div>
-
-<div class="container-fluid py-5" >
-    <div class="container py-5" >
-        <div class="row">
-            <div class="col-md d-flex flex-column justify-content-center align-items-center">
-                <h2>Visulaise your spending pattern</h2>
-                <p>Our expense tracker app provides you with visual analytics, including graphs and pie charts, to help you gain a better understanding of your spending patterns.</p>
-            </div>
-            <div class="col-md">
-                <img class="img-fluid" src="{% static 'images/feature_mockup2.webp' %}" alt="feature mock up 1">
-            </div>
+        <div class="col-md d-flex flex-column justify-content-center align-items-center">
+          <h2>Take Control of Your Finances with Real-Time Tracking</h2>
+          <p>Our expense tracker app provides real-time tracking of your expenses, helping you manage your finances more
+            efficiently. With our intuitive interface and powerful features, you can easily keep track of your spending
+            and make informed financial decisions.</p>
         </div>
+
+      </div>
     </div>
+  </div>
+</section>
+<div class="container-fluid py-5">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md d-flex flex-column justify-content-center align-items-center">
+        <h2>Visulaise your spending pattern</h2>
+        <p>Our expense tracker app provides you with visual analytics, including graphs and pie charts, to help you gain
+          a better understanding of your spending patterns.</p>
+      </div>
+      <div class="col-md">
+        <img class="img-fluid" src="{% static 'images/feature_mockup2.webp' %}" alt="feature mock up 1">
+      </div>
+    </div>
+  </div>
 </div>
 
 <section id="faq" class="py-5">
-    <h2 class="my-5 text-center">FAQs</h2>
-    <div class="container-fluid">
-        <div class="container">
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      How should I use this app?
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <strong>You can use it everyday to log your income and expenses.</strong> It is simple process that does not take more than 30 seconds to complete.
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      Which features can I expect?
-                    </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <strong>You can create individual wallets.</strong>Each wallet corresponds to seperate bank account or credit card. You can create as many wallets as you want. 
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                      Which categories are provided for tracking expenses?
-                    </button>
-                  </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <strong>More than 20 categorie are provided for tracking by default.</strong> And we are always adding new categories.
-                    </div>
-                  </div>
-                </div>
-              </div>
+  <h2 class="my-5 text-center">FAQs</h2>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+              aria-expanded="true" aria-controls="collapseOne">
+              How should I use this app?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>You can use it everyday to log your income and expenses.</strong> It is simple process that does
+              not take more than 30 seconds to complete.
+            </div>
+          </div>
         </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Which features can I expect?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>You can create individual wallets.</strong>Each wallet corresponds to seperate bank account or
+              credit card. You can create as many wallets as you want.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Which categories are provided for tracking expenses?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>More than 20 categorie are provided for tracking by default.</strong> And we are always adding new
+              categories.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+
+<section id="contact" class="py-5">
+  <div class="container text-center">
+  <h2 class="my-5">Contat Us</h2>
+  <p>You can contact us at this email address: <a href="mailto:admin@moneybee.com">Send Email</a></p>
+</div>
 </section>
 
 <div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <div class="col-md-4 d-flex align-items-center">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
 
-        <span class="mb-3 mb-md-0 text-muted">© 2024 MoneyBee, Inc</span>
-      </div>
-  
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class="text-muted" href="https://www.facebook.com/" aria-label="external link to facebook.com"><i class="fa-brands fa-facebook"></i>
-        <li class="ms-3"><a class="text-muted" href="https://www.instagram.com" aria-label="external link to instagram.com"><svg class="bi" width="24" height="24"><i class="fa-brands fa-instagram"></i></svg></a></li>
-            
+      <span class="mb-3 mb-md-0 text-muted">© 2024 MoneyBee, Inc</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="text-muted" href="https://www.facebook.com/"
+          aria-label="external link to facebook.com"><i class="fa-brands fa-facebook"></i>
+      <li class="ms-3"><a class="text-muted" href="https://www.instagram.com"
+          aria-label="external link to instagram.com"><svg class="bi" width="24" height="24"><i
+              class="fa-brands fa-instagram"></i></svg></a></li>
+
     </ul>
-    </footer>
-  </div>
+  </footer>
+</div>
 {% endblock %}
