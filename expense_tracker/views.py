@@ -17,7 +17,7 @@ from django.urls import reverse_lazy
 
 
 # Import related to wallet balance update on transaction creation
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
 # Import related to aggrigate query for overview pag
@@ -155,19 +155,44 @@ def wallets(request):
         "wallets":wallets
     })
 
+
+# Dictionary to hold the old data temporarily
+old_data = {}
+
+@receiver(pre_save, sender=Transaction)
+def capture_old_instance(sender, instance, **kwargs):
+    if instance.pk:  # Ensures this is not a new instance
+        old_instance = sender.objects.get(pk=instance.pk)
+        old_data[instance.pk] = {
+            'amount': old_instance.amount,
+            'is_income': old_instance.is_income,
+            'wallet': old_instance.wallet,
+        }
+
 # Update wallet balance on transaction createion
 @receiver(post_save, sender=Transaction)
 def update_wallet_balance(sender, instance, created, **kwargs):
-    """Update the wallet's balance when a new transaction is created."""
     if created:
-        wallet = instance.wallet
         if instance.is_income:
-            # If the transaction is an income, increase the wallet balance
-            wallet.balance += instance.amount
+            instance.wallet.balance += instance.amount
         else:
-            # If the transaction is an expense, decrease the wallet balance
-            wallet.balance -= instance.amount
-        wallet.save()
+            instance.wallet.balance -= instance.amount
+    else:
+        old_instance_data = old_data.pop(instance.pk, None)
+        if old_instance_data:
+            # Undo the old transaction effect
+            if old_instance_data['is_income']:
+                old_instance_data['wallet'].balance -= old_instance_data['amount']
+            else:
+                old_instance_data['wallet'].balance += old_instance_data['amount']
+
+            # Apply the new transaction effect
+            if instance.is_income:
+                instance.wallet.balance += instance.amount
+            else:
+                instance.wallet.balance -= instance.amount
+
+    instance.wallet.save()
 
 # Create default "Your wallet" on account creation
 @receiver(post_save, sender=User)
