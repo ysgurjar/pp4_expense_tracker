@@ -27,7 +27,8 @@ from django.http import JsonResponse
 from django.core.serializers import serialize
 from decimal import Decimal
 
-
+# Imports related to wallet balance update on deletion of transaction
+from django.db.models.signals import pre_delete
 # =============================
 
 
@@ -195,3 +196,18 @@ class DeleteTransaction(DeleteView):
     #form_class=DeleteTransactionForm
     template_name = 'expense_tracker/transaction_confirm_delete.html'  # Template for update form
     success_url = reverse_lazy('list_transaction')  # URL to redirect after successful update
+
+
+# UPDATE WALLET BALANCE WHEN TRANSACTION IS DELETED
+
+@receiver(pre_delete, sender=Transaction)
+def adjust_wallet_on_delete(sender, instance, **kwargs):
+    """Adjust the wallet balance when a transaction is deleted."""
+    wallet = instance.wallet
+    if instance.is_income:
+        wallet.balance -= instance.amount
+    else:
+        wallet.balance += instance.amount
+    wallet.save()
+
+
