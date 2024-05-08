@@ -15,9 +15,14 @@ urlpatterns = [
     path('personal/transaction/create',views.TransactionCreateView.as_view(),name="create_transaction"),
     path('personal/transactions',views.ListTransaction.as_view(),name="list_transaction"),
     path('personal/overview',views.overview,name="overview"),
-    path('personal/wallets',views.wallets,name="wallets"),
+    #path('personal/wallets',views.wallets,name="wallets"),
     path('personal/transactions/<int:pk>/update',views.UpdateTransaction.as_view(),name="update_transaction"),
     path('personal/transactions/<int:pk>/delete',views.DeleteTransaction.as_view(),name="delete_transaction"),
+    # Wallet
+    path('personal/wallet/create',views.WalletCreateView.as_view(),name="create_wallet"),
+    path('personal/wallets',views.ListWallet.as_view(),name="list_wallet"),
+    path('personal/wallets/<int:pk>/update',views.UpdateWallet.as_view(),name="update_wallet"),
+    path('personal/wallets/<int:pk>/delete',views.DeleteWallet.as_view(),name="delete_wallet"),
 ]
 
 # Serve static files during development

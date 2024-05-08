@@ -64,3 +64,47 @@ class DeleteTransactionForm(forms.ModelForm):
         if user is not None:  # Check if user is provided
             # Filter wallets by the current user's wallets
             self.fields['wallet'].queryset = Wallet.objects.filter(user=user)
+
+# Wallets
+
+class WalletForm(forms.ModelForm):
+    class Meta:
+        model = Wallet
+        exclude=['user']
+    
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)  # Initialize the form
+
+        if user is not None:  # Check if user is provided
+            # Filter wallets by the current user's wallets
+            self.fields['name'].queryset = Wallet.objects.filter(user=user)
+
+
+class UpdateWalletForm(forms.ModelForm):
+    class Meta:
+        model=Wallet
+        
+        exclude=['user']
+        
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)  # Initialize the form
+
+        if user is not None:  # Check if user is provided
+            # Filter wallets by the current user's wallets
+            self.fields['name'].queryset = Wallet.objects.filter(user=user)
+
+class DeleteWalletForm(forms.ModelForm):
+    class Meta:
+        model=Wallet
+        exclude=['user']
+
+        
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)  # Initialize the form
+
+        if user is not None:  # Check if user is provided
+            # Filter wallets by the current user's wallets
+            self.fields['name'].queryset = Wallet.objects.filter(user=user)

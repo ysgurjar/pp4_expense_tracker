@@ -1,0 +1,50 @@
+{% extends "expense_tracker/personal_home.html" %}
+{% block title %}
+Wallets
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid text-center align-items-center py-2">
+    <div>
+        <h1>
+        <a href={% url 'create_wallet'  %} class="btn btn-primary mb-5 p-2">Create Wallet</a>
+        </h1>
+    </div>
+    <hr>
+</div>
+
+<ul>
+    {% for wallet in wallets %}
+
+    <div class="container my-2">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>
+                    {{ wallet.name }}
+                </h4>
+                <h6>
+                    
+                </h6>
+            </div>
+            <div class="col-md-4">
+                <h4>
+                    
+                </h4>
+                <h6>
+                    
+                </h6>
+            </div>
+            <div class="col-md-4 d-fex flex-row">
+                <div class="container">
+                    <a href="{% url 'update_wallet' wallet.pk %}" class="btn btn-secondary">Update</a>
+                </div>
+                <div class="container">
+                    <a href="{% url 'delete_wallet' wallet.pk %}" class="btn btn-secondary my-3">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    {% endfor %}
+</ul>
+{% endblock %}

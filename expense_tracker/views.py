@@ -33,6 +33,10 @@ from django.db.models.signals import pre_delete
 # Import related to messages
 from django.contrib import messages
 
+# Import related to wallets
+
+from .forms import WalletForm,UpdateWalletForm,DeleteWalletForm
+
 # =============================
 
 
@@ -109,6 +113,68 @@ class ListTransaction(ListView):
         return queryset
 
 
+# ===== Wallets =====
+
+# Create form for wallets
+class WalletCreateView(CreateView):
+    # 1- binding view class to model
+    model=Wallet
+    # 2 - binding view class to form
+    form_class=WalletForm
+
+    # 3 - html that the view will serve, which will be a form
+    template_name="expense_tracker/create_wallet.html"
+
+    # 4 - upon successful completion of form, user is redirect to
+    success_url=reverse_lazy('list_wallet')
+
+    def get_form_kwargs(self):
+        # Get the default form kwargs
+        kwargs = super().get_form_kwargs()
+
+        # Add the current user to the kwargs
+        kwargs['user'] = self.request.user
+
+        return kwargs  # Return the modified kwargs
+
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user  # Set the user before saving
+        super().form_valid(form)
+        return redirect('list_wallet')
+
+# show a list of wallets
+class ListWallet(ListView):
+    #template_name="expense_tracker/transactions.html"
+    model = Wallet
+    context_object_name="wallets"
+
+    def get_queryset(self):
+        # Get the default queryset
+        
+        # Order the queryset by the 'date' field in descending order
+        user = self.request.user
+        queryset = super().get_queryset().filter(user=user)
+        return queryset
+
+
+class UpdateWallet(UpdateView):
+    model = Wallet
+    form_class=UpdateWalletForm
+    template_name = 'expense_tracker/update_wallet.html'  # Template for update form
+    success_url = reverse_lazy('list_wallet')  # URL to redirect after successful update
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateTransaction, self).get_form_kwargs()
+        # Add the current user to form kwargs
+        kwargs['user'] = self.request.user
+        return kwargs
+
+class DeleteWallet(DeleteView):
+    model = Wallet
+    #form_class=DeleteTransactionForm
+    template_name = 'expense_tracker/wallet_confirm_delete.html'  # Template for update form
+    success_url = reverse_lazy('list_wallet')  # URL to redirect after successful update
 
 # overview function
 def overview(request):
@@ -152,7 +218,7 @@ def overview(request):
         "totals": totals_serialized,
     })
 
-# wallets function
+# ======== wallets function
 def wallets(request):
 
     wallets=Wallet.objects.filter(user=request.user)
