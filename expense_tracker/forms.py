@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Transaction,Wallet,Category
 from django.utils import formats,timezone
+from django.core.exceptions import ValidationError
 
 
 
@@ -73,12 +74,17 @@ class WalletForm(forms.ModelForm):
         exclude=['user']
     
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user', None)
+        self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)  # Initialize the form
 
-        if user is not None:  # Check if user is provided
-            # Filter wallets by the current user's wallets
-            self.fields['name'].queryset = Wallet.objects.filter(user=user)
+    def clean(self):
+        cleaned_data = super().clean()
+        name = cleaned_data.get('name')
+        
+        if Wallet.objects.filter(user=self.user, name=name).exists():
+            raise ValidationError({'name': "You already have a wallet with this name."})
+
+        return cleaned_data
 
 
 class UpdateWalletForm(forms.ModelForm):
