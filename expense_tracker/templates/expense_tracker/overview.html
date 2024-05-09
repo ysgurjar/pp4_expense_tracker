@@ -1,89 +1,80 @@
 {% extends "expense_tracker/personal_home.html" %}
 {% load static %}
+<!-- Highlight the current page by toggling active class on navbar element-->
+{% block overview %}
+active
+{% endblock %}
 
-{% block overview %}active{% endblock %}
 {% block custom-css-files %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
 {% endblock %}
 {% block content %}
-
-
-
-
+<!-- Wallet overview section -->
 <div class="container my-3">
   <h2 class="text-center">Wallets Overview</h2>
 </div>
 <table class="container table table-bordered">
   <thead class="table-info">
     <tr>
-
       <th scope="col">Wallet name</th>
       <th scope="col">Balance</th>
-
     </tr>
   </thead>
   <tbody>
     {% for wallet in wallets %}
     <tr>
-     
       <td>{{wallet.name}}</td>
       <td>{{ wallet.balance }}</td>
       {% empty %}
-        <tr>
-            <td colspan="3">No transactions found.</td>
-        </tr>
-      {% endfor %}
+    <tr>
+      <td colspan="3">No transactions found.</td>
+    </tr>
+    {% endfor %}
     </tr>
   </tbody>
 </table>
-
+<!-- Chart to show total income and expense -->
 <div class="container my-4 text-center">
-  <h2 >Total Income and expenses</h2>
+  <h2>Total Income and expenses</h2>
   <h6>Includes all wallets</h6>
 </div>
-
 <div class="container d-flex justify-content-center" id="mychart_container">
-<canvas id="myChart"></canvas>
+  <canvas id="myChart"></canvas>
 </div>
-
 <div class="container my-3">
   <h2 class="text-center">5 Largest Withdrawals</h2>
 </div>
-
 <div class="container">
-<table class="table table-bordered">
+  <table class="table table-bordered">
     <thead class="table-info">
-        <tr>
-            <th>Amount</th>
-            <th>Category</th>
-            <th>Date</th>
-        </tr>
+      <tr>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Date</th>
+      </tr>
     </thead>
     <tbody>
-        {% for transaction in top_transactions %}
-        <tr>
-            <td>{{ transaction.amount }}</td>
-            <td>{{ transaction.category__name }}</td>
-            <td>{{ transaction.date|date:"Y-m-d" }}</td> <!-- Formatting the date -->
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="3">No transactions found.</td>
-        </tr>
-        {% endfor %}
+      {% for transaction in top_transactions %}
+      <tr>
+        <td>{{ transaction.amount }}</td>
+        <td>{{ transaction.category__name }}</td>
+        <td>{{ transaction.date|date:"Y-m-d" }}</td> <!-- Formatting the date -->
+      </tr>
+      {% empty %}
+      <!-- section to render if no data is found upon querying-->
+      <tr>
+        <td colspan="3">No transactions found.</td>
+      </tr>
+      {% endfor %}
     </tbody>
-</table>
+  </table>
 </div>
-
-
-
 {% endblock %}
-
+<!-- Load chart.js script that renders chart-->
 {% block script %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<!-- Parse python variable 'totals' to Javascript safely-->
 {{ totals|json_script:"totals" }}
+<!-- Link custom JS file-->
 <script src={% static 'expense_tracker/overview.js' %} defer></script>
-
-
 {% endblock %}
