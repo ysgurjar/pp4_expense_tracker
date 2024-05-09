@@ -26,7 +26,13 @@
    "terminal.integrated.gpuAcceleration": "canvas",
    "editor.defaultFormatter": "HookyQR.beautify",
    "[python]": {
-      "editor.defaultFormatter": "charliermarsh.ruff"
+      "editor.defaultFormatter": "charliermarsh.ruff",
+      "editor.rulers": [79]
    },
+   "autopep8.args": [
+      "--max-lin-length",
+      "79",
+      "--experimental"
+   ],
    "explorer.fileNesting.enabled": true
 }
