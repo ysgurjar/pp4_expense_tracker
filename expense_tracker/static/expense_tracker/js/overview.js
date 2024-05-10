@@ -1,3 +1,4 @@
+/* jshint esversion: 11 */
 /* global Chart */
 // Access the JSON data stored by Django in the HTML
 const rawData = document.getElementById('totals').textContent;
@@ -8,7 +9,7 @@ const total_income = parseInt(myData.total_income);  // Parse the income to inte
 const total_expense = parseInt(myData.total_expense);  // Parse the expense to integer
 
 // bar chart for total income and expense
-const ctx = document.getElementById('myChart').getContext('2d');
+const ctx = document.getElementById('mychart').getContext('2d');
 const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
