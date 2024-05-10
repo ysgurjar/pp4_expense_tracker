@@ -19,7 +19,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary align-items-center justify-content-center">
             {% block navbar %}
             <div class="container-fluid">
-                <a class="navbar-brand" href="#hero">Money Bee</a>
+                <a class="navbar-brand" href="#hero" aria-label="Money Bee , product name">Money Bee</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -28,17 +28,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  mb-2 mb-lg-0 ">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#features">Features</a>
+                            <a class="nav-link" aria-current="page" href="#features" aria-label="features section link">Features</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav  mb-2 mb-lg-0 ">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#faq">FAQ</a>
+                            <a class="nav-link" aria-current="page" href="#faq"  aria-label="faq section link">FAQ</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav  mb-2 mb-lg-0 ">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#contact">Contact</a>
+                            <a class="nav-link" aria-current="page" href="#contact" aria-label="contat us section link"> Contact</a>
                         </li>
                     </ul>
 
@@ -46,7 +46,7 @@
             </div>
             <ul class="navbar-nav  mb-2 mb-lg-0 ">
                 <li class="nav-item">
-                    <a class="btn btn-info px-2 mx-2" aria-current="page" href="/login">Login</a>
+                    <a class="btn btn-info px-2 mx-2" aria-current="page" href="/login" aria-label="login page link">Login</a>
                 </li>
             </ul>
             {% endblock %}

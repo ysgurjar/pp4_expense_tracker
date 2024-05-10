@@ -21,7 +21,8 @@ Placeholder for customer css files that will be added to block css files
 
 {% block navbar%}
 <div class="container-fluid">
-    <a class="navbar-brand d-none" href="#">Money Bee</a>
+    <!-- intentionally rendering element to display-none -->
+    <a class="navbar-brand d-none" href="{% url 'home' %}" aria-label="home page">Money Bee</a> 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -29,20 +30,20 @@ Placeholder for customer css files that will be added to block css files
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav  mb-2 mb-lg-0 ">
             <li class="nav-item">
-                <a class="nav-link {% block overview %}{% endblock %}" aria-current="page"
-                    href="{% url 'overview' %}">Overview</a>
+                <a class="nav-link {% block overview %}{% endblock %}"
+                    href="{% url 'overview' %}"  aria-label="overview" >Overview</a>
             </li>
         </ul>
         <ul class="navbar-nav  mb-2 mb-lg-0 ">
             <li class="nav-item">
-                <a class="nav-link {% block transactions %}{% endblock %}" aria-current="page"
-                    href="{% url 'list_transaction' %}">Transactions</a>
+                <a class="nav-link {% block transactions %}{% endblock %}"
+                    href="{% url 'list_transaction' %}" aria-label="transactions">Transactions</a>
             </li>
         </ul>
         <ul class="navbar-nav  mb-2 mb-lg-0 ">
             <li class="nav-item">
-                <a class="nav-link {% block wallets %}{% endblock %}" aria-current="page"
-                    href="{% url 'list_wallet' %}">Wallets</a>
+                <a class="nav-link {% block wallets %}{% endblock %}"
+                    href="{% url 'list_wallet' %}"  aria-label="wallets">Wallets</a>
             </li>
         </ul>
     </div>
@@ -63,9 +64,4 @@ Placeholder for customer css files that will be added to block css files
 {% endblock %}
 
 {% block content %}
-<a href={% url 'create_transaction' %}>Create Transaction </a>
-<h1>Hey {{user }}</h1>
-<a href={% url 'create_transaction'%} class="float">
-    <i class="fa fa-plus my-float"></i>
-</a>
 {% endblock %}

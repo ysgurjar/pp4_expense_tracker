@@ -7,7 +7,7 @@ Transactions
 <div class="container-fluid text-center align-items-center py-2">
     <div>
         <h1>
-            <a href={% url 'create_transaction'  %} class="btn btn-primary mb-5 p-2">Create Transaction</a>
+            <a href={% url 'create_transaction'  %} class="btn btn-primary mb-5 p-2" aria-label="create transaction">Create Transaction</a>
         </h1>
     </div>
     <hr>
@@ -40,10 +40,10 @@ Transactions
             </div>
             <div class="col-md-4 d-fex flex-row">
                 <div class="container">
-                    <a href="{% url 'update_transaction' transaction.pk %}" class="btn btn-secondary">Update</a>
+                    <a href="{% url 'update_transaction' transaction.pk %}" class="btn btn-secondary" aria-label="update transaction">Update</a>
                 </div>
                 <div class="container">
-                    <a href="{% url 'delete_transaction' transaction.pk %}" class="btn btn-secondary my-3">Delete</a>
+                    <a href="{% url 'delete_transaction' transaction.pk %}" class="btn btn-secondary my-3" aria-label="delete transaction">Delete</a>
                 </div>
             </div>
         </div>

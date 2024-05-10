@@ -7,7 +7,7 @@ Wallets
 <div class="container-fluid text-center align-items-center py-2">
     <div>
         <h1>
-        <a href={% url 'create_wallet'  %} class="btn btn-primary mb-5 p-2">Create Wallet</a>
+        <a href={% url 'create_wallet'  %} class="btn btn-primary mb-5 p-2" aria-label="create wallet">Create Wallet</a>
         </h1>
     </div>
     <hr>
@@ -23,10 +23,10 @@ Wallets
             </div>
             <div class="col-md-4 d-fex flex-row">
                 <div class="container">
-                    <a href="{% url 'update_wallet' wallet.pk %}" class="btn btn-secondary">Update</a>
+                    <a href="{% url 'update_wallet' wallet.pk %}" class="btn btn-secondary" aria-label="update wallet">Update</a>
                 </div>
                 <div class="container">
-                    <a href="{% url 'delete_wallet' wallet.pk %}" class="btn btn-secondary my-3">Delete</a>
+                    <a href="{% url 'delete_wallet' wallet.pk %}" class="btn btn-secondary my-3" aria-label="delete wallet">Delete</a>
                 </div>
             </div>
         </div>
