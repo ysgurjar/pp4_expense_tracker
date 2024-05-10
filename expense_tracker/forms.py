@@ -17,7 +17,9 @@ class RegisterForm(UserCreationForm):
 
 class TransactionForm(forms.ModelForm):
     """Form for creating a new transaction."""
-
+    is_income = forms.BooleanField(
+        label="Mark transaction as income", required=False
+    )
     class Meta:
         model = Transaction
         # fields = ['wallet', 'category', 'amount', 'date','is_income']
