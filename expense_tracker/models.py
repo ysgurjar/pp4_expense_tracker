@@ -20,7 +20,7 @@ class Wallet(models.Model):
     )  # Link to the user's account
     name = models.CharField(
         max_length=100,
-        default="default wallet",
+        default="your bank account",
         help_text="The name of the wallet.",
     )  # Wallet name
     balance = models.DecimalField(
