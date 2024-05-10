@@ -118,9 +118,11 @@ class ListTransaction(LoginRequiredMixin, ListView):
         queryset = super().get_queryset().filter(user=user).order_by("-date")
         return queryset
 
+
 # Class-based view for updating transactions
 class UpdateTransaction(LoginRequiredMixin, UpdateView):
     """Update an existing transaction."""
+
     model = Transaction
     form_class = UpdateTransactionForm
     template_name = (
@@ -136,9 +138,11 @@ class UpdateTransaction(LoginRequiredMixin, UpdateView):
         kwargs["user"] = self.request.user
         return kwargs
 
+
 # Class-based view for deleting transactions
 class DeleteTransaction(LoginRequiredMixin, DeleteView):
     """Delete an existing transaction."""
+
     model = Transaction
     # form_class=DeleteTransactionForm
     template_name = "expense_tracker/transaction_confirm_delete.html"
@@ -146,11 +150,14 @@ class DeleteTransaction(LoginRequiredMixin, DeleteView):
         "list_transaction"
     )  # URL to redirect after successful update
 
+
 # === Wallet related views ===
+
 
 # Class-based view for creating wallets
 class WalletCreateView(LoginRequiredMixin, CreateView):
     """Create a new wallet for the logged-in user."""
+
     # 1- binding view class to model
     model = Wallet
     # 2 - binding view class to form
@@ -180,6 +187,7 @@ class WalletCreateView(LoginRequiredMixin, CreateView):
 # Class-based view for listing wallets
 class ListWallet(LoginRequiredMixin, ListView):
     """List all wallets of the logged-in user."""
+
     model = Wallet
     context_object_name = "wallets"
 
@@ -189,9 +197,11 @@ class ListWallet(LoginRequiredMixin, ListView):
         queryset = super().get_queryset().filter(user=user)
         return queryset
 
+
 # Class-based view for updating wallets
 class UpdateWallet(LoginRequiredMixin, UpdateView):
     """Update an existing wallet."""
+
     model = Wallet
     form_class = UpdateWalletForm
     template_name = "expense_tracker/update_wallet.html"
@@ -206,30 +216,26 @@ class UpdateWallet(LoginRequiredMixin, UpdateView):
         kwargs["user"] = self.request.user
         return kwargs
 
+
 # Class-based view for deleting wallets
 class DeleteWallet(LoginRequiredMixin, DeleteView):
     """Update an existing wallet."""
+
     model = Wallet
     template_name = "expense_tracker/wallet_confirm_delete.html"
     success_url = reverse_lazy(
         "list_wallet"
     )  # URL to redirect after successful update
 
-# === Overview page logic
+
+# === Overview page logic ===
+
 
 # overview function
 @login_required
 def overview(request):
     """Renders overview page for logged in users"""
     wallets = Wallet.objects.filter(user=request.user)
-
-    # Get expenses by category
-    expense_by_cat = (
-        Transaction.objects.filter(wallet__in=wallets)
-        .values("category__name")
-        .annotate(total_amount=Sum("amount"))
-        .order_by("-total_amount")
-    )
 
     # Get top 5 expense transactions (not income)
     top_transactions = (
@@ -256,7 +262,6 @@ def overview(request):
         ),
     )
 
-
     # Handling Decimal types for JSON serialization
     totals_serialized = json.dumps(
         totals, default=lambda x: str(x) if isinstance(x, Decimal) else x
@@ -267,19 +272,22 @@ def overview(request):
         "expense_tracker/overview.html",
         {
             "wallets": wallets,
-            "expense_by_cat": list(expense_by_cat),
             "top_transactions": top_transactions,
             "totals": totals_serialized,
         },
     )
 
 
-# Dictionary to hold the old data temporarily
+# ============================= Signals =============================
+
+# Dictionary to hold the old data temporarily to make necessary changes to
+# wallet balance when the transactio is edited
 old_data = {}
 
 
 @receiver(pre_save, sender=Transaction)
 def capture_old_instance(sender, instance, **kwargs):
+    """Capture old transaction details before updating it"""
     if instance.pk:  # Ensures this is not a new instance
         old_instance = sender.objects.get(pk=instance.pk)
         old_data[instance.pk] = {
@@ -291,6 +299,7 @@ def capture_old_instance(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Transaction)
 def update_wallet_balance(sender, instance, created, **kwargs):
+    """Update wallet balance when transaction is edited"""
     wallet = Wallet.objects.get(
         id=instance.wallet_id
     )  # Fetch the latest wallet state
@@ -302,7 +311,8 @@ def update_wallet_balance(sender, instance, created, **kwargs):
     else:
         old_instance_data = old_data.pop(instance.pk, None)
         if old_instance_data:
-            # Fetch the wallet associated with the old transaction data if it's different
+            # Fetch the wallet associated with the old transaction data
+            # if it's different
             if old_instance_data["wallet_id"] != instance.wallet_id:
                 old_wallet = Wallet.objects.get(
                     id=old_instance_data["wallet_id"]
@@ -322,24 +332,14 @@ def update_wallet_balance(sender, instance, created, **kwargs):
                 wallet.balance += instance.amount
             else:
                 wallet.balance -= instance.amount
-
     wallet.save()
 
 
-# Create default "Your wallet" on account creation
 @receiver(post_save, sender=User)
 def create_default_wallet(sender, instance, created, **kwargs):
+    """Create a default wallet on account creation"""
     if created:
         Wallet.objects.create(user=instance, name="Your Wallet", balance=0.00)
-
-
-# =====
-
-
-
-
-
-# UPDATE WALLET BALANCE WHEN TRANSACTION IS DELETED
 
 
 @receiver(pre_delete, sender=Transaction)

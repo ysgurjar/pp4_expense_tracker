@@ -1,4 +1,4 @@
-
+/* global Chart */
 // Access the JSON data stored by Django in the HTML
 const rawData = document.getElementById('totals').textContent;
 
