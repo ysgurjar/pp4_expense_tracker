@@ -9,6 +9,7 @@ from .models import Transaction, Wallet
 
 class RegisterForm(UserCreationForm):
     """Form for registering a new user with a username and password."""
+
     class Meta:
         model = User
         fields = ["username", "password1", "password2"]
@@ -16,6 +17,7 @@ class RegisterForm(UserCreationForm):
 
 class TransactionForm(forms.ModelForm):
     """Form for creating a new transaction."""
+
     class Meta:
         model = Transaction
         # fields = ['wallet', 'category', 'amount', 'date','is_income']
@@ -41,9 +43,13 @@ class TransactionForm(forms.ModelForm):
 
 class UpdateTransactionForm(forms.ModelForm):
     """Form for updating an existing transaction."""
+
+    is_income = forms.BooleanField(
+        label="Mark transaction as income", required=False
+    )
+
     class Meta:
         model = Transaction
-
         exclude = ["user"]
         widgets = {
             "date": forms.DateInput(
@@ -66,6 +72,7 @@ class UpdateTransactionForm(forms.ModelForm):
 
 class DeleteTransactionForm(forms.ModelForm):
     """Form for deleting an existing transaction."""
+
     class Meta:
         model = Transaction
         fields = ["user", "wallet", "category", "amount", "date", "is_income"]
@@ -83,6 +90,7 @@ class DeleteTransactionForm(forms.ModelForm):
 
 class WalletForm(forms.ModelForm):
     """Form for creating a new wallet."""
+
     class Meta:
         model = Wallet
         exclude = ["user"]
@@ -105,6 +113,7 @@ class WalletForm(forms.ModelForm):
 
 class UpdateWalletForm(forms.ModelForm):
     """Form for updating an existing wallet."""
+
     class Meta:
         model = Wallet
 
@@ -129,6 +138,7 @@ class UpdateWalletForm(forms.ModelForm):
 
 class DeleteWalletForm(forms.ModelForm):
     """Form for deleting an existing wallet."""
+
     class Meta:
         model = Wallet
         exclude = ["user"]
