@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "expense_tracker/personal_home.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
 
@@ -10,7 +10,8 @@ Delete Wallet
 <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,500,0,200" />
 {% endblock %}
-
+<!-- Toggle active class to show current page on navbar-->
+{% block wallets %}active{% endblock %}
 {% block content%}
 <div class="container text-center">
     <h3>Delete wallet</h3>

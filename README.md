@@ -1,7 +1,7 @@
 # MoneyBee
-## Live webiste 	[placeholder](https://www.example.com)
+## Live webiste 	[Money Bee](https://pp4-expense-tracker-e175ccf12a09.herokuapp.com/)
 ## About
-MoneyBee is an expense tracker application. Through the app, users can track income and expenses. A user, in reality, has multiple bank accounts, credit cards and debit cards. To facilitate that, the concept of "wallet" is introduced. It represents a single bank account or a credit/debit card. As a part of MVP, a bar chart tells you total income and expenses across multiple wallets. At the moment, the user can create as many wallets as necessary. However, the user is limited to expense and income categories provided by the admin, which is to be improved in the next sprint.
+Money Bee is an expense tracker application. Through the app, users can track income and expenses. A user, in reality, has multiple bank accounts, credit cards and debit cards. To facilitate that, the concept of "wallet" is introduced. It represents a single bank account or a credit/debit card. As a part of MVP, a bar chart tells you total income and expenses across multiple wallets. At the moment, the user can create as many wallets as necessary. However, the user is limited to expense and income categories provided by the admin, which is to be improved in the next sprint.
 
 ## Table of Content
 
@@ -32,6 +32,27 @@ MoneyBee is an expense tracker application. Through the app, users can track inc
 7. [References and Credits](#references)
 
 <hr>
+
+## Code validation
+- All HTML pages were tested on [W3C validator]("https://validator.w3.org/#validate_by_input") --> No errors
+
+    - Home page [results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fysgurjar.github.io%2Fpp2-flip-card-game%2F)
+
+    - Overview [results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fysgurjar.github.io%2Fpp2-flip-card-game%2Flevels.html) 
+
+    - Transaction [results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fysgurjar.github.io%2Fpp2-flip-card-game%2Fgame.html) 
+
+    - Wallets
+
+- All CSS pages were tested on [Jigsaw validator]("https://jigsaw.w3.org/css-validator/#validate_by_input") via direct input--> No errors
+
+
+- All JS pages were tested on [jshint]("https://jshint.com/") via direct input--> No errors found
+
+- The site was tested for accessibility and contrast errors on [wave](!https://wave.webaim.org/) --> No common errors or contrast errors
+    - index.html [results](https://wave.webaim.org/report#/https://ysgurjar.github.io/pp2-flip-card-game/index.html)
+    - levels.html [results](https://wave.webaim.org/report#/https://ysgurjar.github.io/pp2-flip-card-game/levels.html)
+    - game.html [results](https://wave.webaim.org/report#/https://ysgurjar.github.io/pp2-flip-card-game/game.html)
 
 ### Bugs
 
