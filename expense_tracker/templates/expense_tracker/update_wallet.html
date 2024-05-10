@@ -14,6 +14,10 @@ Update Transaction
 {% block content%}
 <div class="container text-center">
     <h3>Update Wallet</h3>
+    <div class="alert alert-warning" role="alert">
+        Adjusting a wallet balance here will not be recorded as transaction. Alternatively you can create a transaction
+        with "adjust balance" category if you want it to be reflected as income or expense.
+    </div>
     <div class="container text-start ">
         <!-- Form -->
         <form method="post">
@@ -24,7 +28,8 @@ Update Transaction
             </div>
         </form>
         <div class="container text-center">
-            <a href="{% url 'list_wallet' %}" class="btn btn-secondary  my-3" aria-label="back to list of wallets">Back</a>
+            <a href="{% url 'list_wallet' %}" class="btn btn-secondary  my-3"
+                aria-label="back to list of wallets">Back</a>
         </div>
     </div>
 </div>
