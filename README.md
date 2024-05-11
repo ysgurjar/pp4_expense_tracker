@@ -5,7 +5,7 @@ Money Bee is an expense tracker application. Through the app, users can track in
 
 ## Table of Content
 
-1. [Business Objective - Strategy Plane](#stretegy-plane)
+1. [Business Objective - Strategy Plane](#strategy-plane)
     1. [The business objective](#business-objective)
     2. [The potential user](#the-potential-user)
     3. [The user requirements](#the-user-requirements)
@@ -33,26 +33,81 @@ Money Bee is an expense tracker application. Through the app, users can track in
 
 <hr>
 
+# Strategy Plane
+
+## Business Objective
+To build an expense tracker application that is easy to start without friction of too much options for logging exepenses.
+
+### The potential user
+
+Anyone looking for tracking their spending habits. It can be userful perticularly for children so that they can learn how to manage their finances.
+
+### The user requirements
+
+The user wants a way to quickly log exepnses and have some visual way to look at how much he or she is spending across all credit cards and bank accounts.
+
+### Task
+
+Conduct research to understand UI of the similar products available on the internet. The user should feel somewhat familiar with our product, but it should give a sense of simplicity.
+
+# The Scope Plane
+
+### The feature requirements
+
+1. Logo with standard navigation
+2. Features of the app
+3. FAQ section
+4. Contact us section
+5. Sign up functionality
+6. Secure log in and log out
+7. Password change
+8. Account recovery
+9. CRUD operation on transaction
+10. CRUD operation on wallets
+11. Budgeting
+12. Snapshot of total income and expense
+13. Ability to log transaction for different back accounts, cards etc
+14. User can create custom spending categories
+15. Back date expenses
+16. Role based functionality - superuser special rights
+17. 404 page
+
+A github project is created to keep a track of these feature release as we move through development. However a feasibility study needs to be conducted to launch MVP.
+
+### The content requirements
+
+The user will be presented with usual landing page. Following that he can sign up or log in , that will take him to personalise view to manage his finances.A
+
+### The feasibility study
+
+| **STAGE** | **STRATEGY**                                                            | **STRATEGY**   | **STRATEGY**    | **FEASIBILITY**                                                                                                                 | **FEASIBILITY**       | **DEVELOPMENT AND TESTING**                         | **DEVELOPMENT AND TESTING**                              | **DEVELOPMENT AND TESTING** |
+| --------- | ----------------------------------------------------------------------- | -------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------------- | --------------------------------------------------- | -------------------------------------------------------- | --------------------------- |
+| **Label** | **Opportunity**                                                         | **Importance** | **Feasibility** | **Comment**                                                                                                                     | **Selected for MVP?** | **Related GitHub issue that covers the user story** | **Is user story tested and passes acceptance criteria?** | **Proof of testing**        |
+| **A**     | Logo with standard navaigation                                          | 5              | 5               |                                                                                                                                 |                       |                                                     |                                                          |                             |
+| **B**     | Description of the features of the app                                  | 5              | 5               |                                                                                                                                 |                       |                                                     |                                                          |                             |
+| **C**     | FAQ section to improve conversions                                      | 5              | 4               |                                                                                                                                 |                       |                                                     |                                                          |                             |
+| **D**     | Contact us section                                                      | 5              | 5               |                                                                                                                                 |                       |                                                     |                                                          |                             |
+| **E**     | Sing up functionality                                                   | 5              | 5               | Ideal to have email based verification. If not possible due to time constraint, have it username based                          |                       |                                                     |                                                          |                             |
+| **F**     | Secure log in and log out                                               | 5              | 4               | Ideal to have email based verification. If not possible due to time constraint, have it username based                          |                       |                                                     |                                                          |                             |
+| **G**     | Password change                                                         | 4              | 3               | Low feasibility due to time constraint                                                                                          |                       |                                                     |                                                          |                             |
+| **H**     | Account recovery                                                        | 4              | 3               | Low feasibility due to time constraint                                                                                          |                       |                                                     |                                                          |                             |
+| **I**     | CRUD on transaction                                                     | 5              | 5               |                                                                                                                                 |                       |                                                     |                                                          |                             |
+| **J**     | CRUD on wallets                                                         | 4              | 5               |                                                                                                                                 |                       |                                                     |                                                          |                             |
+| **K**     | Budgeting                                                               | 3              | 3               |                                                                                                                                 |                       |                                                     |                                                          |                             |
+| **L**     | Snapshot of total income and expense                                    | 4              | 4               |                                                                                                                                 |                       |                                                     |                                                          |                             |
+| **M**     | Ability to log transaction for different back accounts and credit cards | 5              | 5               | Implement through wallet functionality ( so closely related, perhaps duplicate)                                                 |                       |                                                     |                                                          |                             |
+| **N**     | Ability to back date expenses                                           | 4              | 4               | Can be covered through CRUD on transaction, but with a constraint that past dates are allowed, but future dates are not allowed |                       |                                                     |                                                          |                             |
+| **O**     | Role based functionality-superuser or admin special rights              | 5              | 5               |                                                                                                                                 |                       |                                                     |                                                          |                             |
+| **P**     | 404 page                                                                | 4              | 5               |                                                                                                                                 |                       |                                                     |                                                          |                             |
+
 ## Code validation
 - All HTML pages were tested on [W3C validator]("https://validator.w3.org/#validate_by_input") --> No errors
 
-    - Home page [results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fysgurjar.github.io%2Fpp2-flip-card-game%2F)
-
-    - Overview [results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fysgurjar.github.io%2Fpp2-flip-card-game%2Flevels.html) 
-
-    - Transaction [results](https://validator.w3.org/nu/?doc=https%3A%2F%2Fysgurjar.github.io%2Fpp2-flip-card-game%2Fgame.html) 
-
-    - Wallets
-
 - All CSS pages were tested on [Jigsaw validator]("https://jigsaw.w3.org/css-validator/#validate_by_input") via direct input--> No errors
-
 
 - All JS pages were tested on [jshint]("https://jshint.com/") via direct input--> No errors found
 
 - The site was tested for accessibility and contrast errors on [wave](!https://wave.webaim.org/) --> No common errors or contrast errors
-    - index.html [results](https://wave.webaim.org/report#/https://ysgurjar.github.io/pp2-flip-card-game/index.html)
-    - levels.html [results](https://wave.webaim.org/report#/https://ysgurjar.github.io/pp2-flip-card-game/levels.html)
-    - game.html [results](https://wave.webaim.org/report#/https://ysgurjar.github.io/pp2-flip-card-game/game.html)
 
 ### Bugs
 
