@@ -15,21 +15,24 @@ Money Bee is an expense tracker application. Through the app, users can track in
     2. [The content requirements](#the-content-requirements)
     3. [The feasibility study](#the-feasibility-study)
     4. [The user stories](#the-user-stories)
-3. [The Structure and Skeleton Plane](#the-structure-plane)
+3. [The Structure and Skeleton Plane](#the-structure-and-skeleton-plane)
     1. [Site logic](#site-logic)
     2. [Wireframe](#wireframe)
-4. [Deployment](#deployment) 
+4. [Development](#development)
+    1. [Tracking development in github project](#tracking-development-in-github-project)
+    2. [Testing and Debugging (while coding)](#testing-and-debugging-while-coding)
 5. [Testing](#testing)
     1. [Code validation](#code-validation)
     2. [Performance](#performance)
     3. [Interactivity](#interactivity)
-    4. [User story testing with implemented features](#user-story-testing)
+    4. [Responsiveness](#responsiveness)
     5. [Browser compatibility](#browswer-compatibility)
-    6. [Responsiveness](#responsiveness)
-    7. [Bugs](#bugs)
-6. [Future Work](#future-work)
+    6. [User story testing (feature testing) and manual testing (acceptance criteria testing)](#user-story-testing)
+
+6. [Deployment](#deployment)
+7. [Future Work](#future-work)
    
-7. [References and Credits](#references)
+8. [References and Credits](#references)
 
 <hr>
 
