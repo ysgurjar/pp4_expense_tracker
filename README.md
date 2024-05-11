@@ -14,7 +14,6 @@ Money Bee is an expense tracker application. Through the app, users can track in
     1. [The feature requirements](#the-feature-requirements)
     2. [The content requirements](#the-content-requirements)
     3. [The feasibility study](#the-feasibility-study)
-    4. [The user stories](#the-user-stories)
 3. [The Structure and Skeleton Plane](#the-structure-and-skeleton-plane)
     1. [Site logic](#site-logic)
     2. [Wireframe](#wireframe)
@@ -113,17 +112,50 @@ After ranking, the features were plotted on the following graph to select featur
 
 # The Structure and Skeleton Plane
 
-# Site Logic
+## Site Logic
 
 The following [image](documentation/user_navigation_logic.png) gives an overview of user navigation on the site. **Note that this is the final product and not just MVP.**
 
 ![image](documentation/user_navigation_logic.png)
 
-# Wireframe
+## Wireframe
 
 Wireframes were created only for MVP.
 
 ![image](documentation/wireframes.png)
+
+# Development
+
+## Tracking development in github project
+
+Now we have a clear idea of MVP and feature requirement. The next step is to create acceptance criteria for each of these feature requirements and create a structure for tracking development. For this purpose a [github project](https://github.com/users/ysgurjar/projects/2) is used.
+
+**Note that github project is central repo to track all development and not just MVP. All the github issues related to MVP are tagged with "must have".**
+
+Each issue corresponds to a user story, which again outlines feature requirements and acceptance criteria. 
+
+So, the table created during feasibility study is now populated with some more fields as mentioned below.
+
+| **STAGE** | **STRATEGY**                                                                       | **STRATEGY**   | **STRATEGY**    | **FEASIBILITY**                                                                                                                 | **FEASIBILITY**                  | **DEVELOPMENT AND TESTING**                                                                                                       | **DEVELOPMENT AND TESTING**                              |
+| --------- | ---------------------------------------------------------------------------------- | -------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| **Label** | **Opportunity**                                                                    | **Importance** | **Feasibility** | **Comment**                                                                                                                     | **Selected for MVP?**            | **Related GitHub issue that covers the user story**                                                                               | **Is user story tested and passes acceptance criteria?** |
+| **A**     | Logo with standard navaigation                                                     | 5              | 5               |                                                                                                                                 | Yes                              | [#4](https://github.com/ysgurjar/pp4_expense_tracker/issues/4)                                                                    |                                                          |
+| **B**     | Description of the features of the app                                             | 5              | 5               |                                                                                                                                 | Yes                              | [#4](https://github.com/ysgurjar/pp4_expense_tracker/issues/4)                                                                    |                                                          |
+| **C**     | FAQ section to improve conversions                                                 | 5              | 4               |                                                                                                                                 | Yes                              | [#3](https://github.com/ysgurjar/pp4_expense_tracker/issues/3)                                                                    |                                                          |
+| **D**     | Contact us section                                                                 | 5              | 5               |                                                                                                                                 | Yes                              | [#5](https://github.com/ysgurjar/pp4_expense_tracker/issues/5)                                                                    |                                                          |
+| **E**     | Sing up functionality                                                              | 5              | 5               | Ideal to have email based verification. If not possible due to time constraint, have it username based                          | Yes - with limited functionality | [#6](https://github.com/ysgurjar/pp4_expense_tracker/issues/6)                                                                    |                                                          |
+| **F**     | Secure log in and log out                                                          | 5              | 4               | Ideal to have email based verification. If not possible due to time constraint, have it username based                          | Yes - with limited functionality | [#7](https://github.com/ysgurjar/pp4_expense_tracker/issues/7)                                                                    |                                                          |
+| **G**     | Password change                                                                    | 4              | 3               | Low feasibility due to time constraint                                                                                          | No                               | No associated GitHub issue yet                                                                                                    |                                                          |
+| **H**     | Account recovery                                                                   | 4              | 3               | Low feasibility due to time constraint                                                                                          | No                               | [#8](https://github.com/ysgurjar/pp4_expense_tracker/issues/8)                                                                    |                                                          |
+| **I**     | CRUD on transaction                                                                | 5              | 5               |                                                                                                                                 | Yes                              | [#10](https://github.com/ysgurjar/pp4_expense_tracker/issues/10)                                                                  |                                                          |
+| **J**     | CRUD on wallets                                                                    | 4              | 5               |                                                                                                                                 | Yes                              |                                                                                                                                   |                                                          |
+| **K**     | Budgeting                                                                          | 3              | 3               |                                                                                                                                 | No                               | [#14](https://github.com/ysgurjar/pp4_expense_tracker/issues/14)                                                                  |                                                          |
+| **L**     | Snapshot of total income and expense                                               | 4              | 4               |                                                                                                                                 | Yes                              | [#16](https://github.com/ysgurjar/pp4_expense_tracker/issues/16)                                                                  |                                                          |
+| **M**     | Ability to log transaction for different back accounts and credit cards            | 5              | 5               | Implement through wallet functionality ( so closely related, perhaps duplicate)                                                 | Yes                              | [#9](https://github.com/ysgurjar/pp4_expense_tracker/issues/9)                                                                    |                                                          |
+| **N**     | Ability to update expenses including back date expenses (no forward dates allowed) | 4              | 4               | Can be covered through CRUD on transaction, but with a constraint that past dates are allowed, but future dates are not allowed | Yes                              | [#11](https://github.com/ysgurjar/pp4_expense_tracker/issues/11)                                                                  |                                                          |
+| **O**     | Role based functionality-superuser or admin special rights                         | 5              | 5               |                                                                                                                                 | Yes                              | [#2](https://github.com/ysgurjar/pp4_expense_tracker/issues/2) , [#12](https://github.com/ysgurjar/pp4_expense_tracker/issues/12) |                                                          |
+| **P**     | 404 page                                                                           | 4              | 5               |                                                                                                                                 | Yes                              | [#17](https://github.com/ysgurjar/pp4_expense_tracker/issues/17)                                                                  |                                                          |
+
 
 ## Code validation
 - All HTML pages were tested on [W3C validator]("https://validator.w3.org/#validate_by_input") --> No errors
