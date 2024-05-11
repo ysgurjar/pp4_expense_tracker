@@ -80,6 +80,10 @@ The user will be presented with usual landing page. Following that he can sign u
 
 ### The feasibility study
 
+For each of the feature requiremets listed above, a feasbility study was conducted to conclude MVP features provided time and budgeting constraint.  The matrix below represents result of such study.
+
+**The table mentioned below will be populated as we move through development, testing and deployment stage.**
+
 | **STAGE** | **STRATEGY**                                                            | **STRATEGY**   | **STRATEGY**    | **FEASIBILITY**                                                                                                                 | **FEASIBILITY**       | **DEVELOPMENT AND TESTING**                         | **DEVELOPMENT AND TESTING**                              | **DEVELOPMENT AND TESTING** |
 | --------- | ----------------------------------------------------------------------- | -------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------- | --------------------- | --------------------------------------------------- | -------------------------------------------------------- | --------------------------- |
 | **Label** | **Opportunity**                                                         | **Importance** | **Feasibility** | **Comment**                                                                                                                     | **Selected for MVP?** | **Related GitHub issue that covers the user story** | **Is user story tested and passes acceptance criteria?** | **Proof of testing**        |
@@ -99,6 +103,24 @@ The user will be presented with usual landing page. Following that he can sign u
 | **N**     | Ability to back date expenses                                           | 4              | 4               | Can be covered through CRUD on transaction, but with a constraint that past dates are allowed, but future dates are not allowed |                       |                                                     |                                                          |                             |
 | **O**     | Role based functionality-superuser or admin special rights              | 5              | 5               |                                                                                                                                 |                       |                                                     |                                                          |                             |
 | **P**     | 404 page                                                                | 4              | 5               |                                                                                                                                 |                       |                                                     |                                                          |                             |
+
+After ranking, the features were plotted on the following graph to select features for MVP.
+
+![feasibility matrix](documentation/feasibility_study.jpg)
+
+# The Structure and Skeleton Plane
+
+# Site Logic
+
+The following [image](documentation/user_navigation_logic.png) gives an overview of user navigation on the site. **Note that this is the final product and not just MVP.**
+
+![image](documentation/user_navigation_logic.png)
+
+# Wireframe
+
+Wireframes were created only for MVP.
+
+![image](documentation/wireframes.png)
 
 ## Code validation
 - All HTML pages were tested on [W3C validator]("https://validator.w3.org/#validate_by_input") --> No errors
